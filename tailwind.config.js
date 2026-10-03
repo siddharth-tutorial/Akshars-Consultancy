@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",  // React components ni files
@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [],
 }
-=======
+
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -55,4 +55,3 @@ const config = {
 };
 
 export default config;
->>>>>>> master

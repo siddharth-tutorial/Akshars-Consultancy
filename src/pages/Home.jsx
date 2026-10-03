@@ -403,18 +403,7 @@
 // export default Home;
 
 import React, { useEffect, useState } from "react"; // useState kadhi nakhyu
-// import { Link } from "react-router-dom";
 
-// import {
-//   FaCoins,
-//   FaMoneyCheckAlt,
-//   FaPen,
-//   FaUniversity,
-//   FaFileInvoiceDollar,
-//   FaGlobeEurope,
-//   FaArrowRight,
-//   // FaAward,
-// } from "react-icons/fa";
 
 import Header from "../component/Header";
 import Footer from "../component/Footer";

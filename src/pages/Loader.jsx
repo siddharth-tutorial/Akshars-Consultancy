@@ -1,30 +1,21 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 
 const Loader = () => {
   return (
-    <Container
-      fluid
-      className="d-flex flex-column justify-content-center align-items-center"
-      style={{ height: "100vh" }}
-    >
+    <div className="flex flex-col justify-center items-center h-screen w-full">
       {/* Ripple animation container */}
-      <div className="ripple-loader">
+      <div className="relative w-[120px] h-[120px]">
         <div className="circle one"></div>
         <div className="circle two"></div>
       </div>
 
       {/* Loading text */}
-      <span className="loading-text">Loading...</span>
+      <span className="mt-5 font-primary text-xl font-bold text-primaryDark">
+        Loading...
+      </span>
 
       {/* Inline CSS for ripple effect */}
       <style>{`
-        .ripple-loader {
-          position: relative;
-          width: 120px;
-          height: 120px;
-        }
-
         .circle {
           position: absolute;
           left: 50%;
@@ -32,7 +23,7 @@ const Loader = () => {
           width: 0;
           height: 0;
           border-radius: 50%;
-          background: #CD5C5C;
+          background: #F5B800; /* Using 'gold' from your Tailwind config */
           transform: translate(-50%, -50%);
           opacity: 0.7;
         }
@@ -70,16 +61,8 @@ const Loader = () => {
             opacity: 0;
           }
         }
-
-        .loading-text {
-          margin-top: 20px;
-          font-family: sans-serif;
-          font-size: 20px;
-          font-weight: bold;
-          color: #CD5C5C;
-        }
       `}</style>
-    </Container>
+    </div>
   );
 };
 

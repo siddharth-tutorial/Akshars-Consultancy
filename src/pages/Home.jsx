@@ -418,7 +418,8 @@ import {
 } from "react-icons/fa6";
 
 import img6 from "../assets/img-6.jpg";
-import img7 from "../assets/img-7.jpg";
+
+import img7 from "../assets/teams.avif";
 import HomeSlider from "../component/HomeSlider";
 import { FaGlobeEurope, FaMoneyCheckAlt, FaUniversity } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -465,40 +466,46 @@ const Home = () => {
   /* ---------------- SERVICES DATA ---------------- */
   const services = [
     {
-      title: "Bookkeeping Services",
+      title: "Book Keeping Services",
       icon: <FaPen />,
       image:
         "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=600",
+        link: "/service/bookeeping",
     },
     {
       title: "Financial Consulting",
       icon: <FaUniversity />,
       image:
         "https://avatars.mds.yandex.net/get-altay/12813969/2a0000018e16a8c1a6609b070fa83c18bac9/XXL_height",
+        link:"/service/msme",
     },
     {
       title: "Income Tax Return",
       icon: <FaMoneyCheckAlt />,
       image:
         "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=600",
+        link:"/service/taxreturn",
     },
     {
       title: "Audit & Assurance",
       icon: <FaCoins />,
       image:
         "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=600",
+        link:"/service/audit",
     },
     {
       title: "Payroll Management",
       icon: <FaFileInvoiceDollar />,
       image:
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600",
+        link:"/service/payroll",
     },
     {
       title: "International Accounting",
       icon: <FaGlobeEurope />,
       image:
         "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=600",
+        link:"/service/foreign",
     },
   ];
   return (
@@ -506,59 +513,7 @@ const Home = () => {
       <Header />
       {/* Hero Carousel */}
       <HomeSlider />
-      {/* <section className="relative h-[85vh] md:h-[92vh]">
-        <Swiper
-          modules={[Autoplay, EffectFade, Pagination]}
-          effect="fade"
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          pagination={{ clickable: true }}
-          className="h-full w-full"
-        >
-          {slides.map((slide, idx) => (
-            <SwiperSlide key={idx} className="relative">
-              <div className="absolute inset-0 bg-black/50 z-10" />
-              <img
-                src={slide.image}
-                className="h-full w-full object-cover"
-                alt="Banner"
-              />
-
-              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-4xl md:text-7xl font-extrabold text-white mb-6"
-                >
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
-                    {slide.heading}
-                  </span>
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-gray-200 text-lg md:text-2xl max-w-3xl mb-10"
-                >
-                  {slide.subtext}
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                >
-                  <Link
-                    to={slide.link}
-                    className="bg-gradient-to-r from-[#e45c3c] to-[#da4b2d] text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 inline-block"
-                  >
-                    {slide.buttonText}
-                  </Link>
-                </motion.div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </section> */}
-      {/* hero slider closed */}
+      
 
       {/* About Section */}
 
@@ -619,7 +574,7 @@ const Home = () => {
                 "Best Accounting Service",
                 "Quality Control",
                 "Professional Team",
-                "24/7 Customer Support",
+                
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-[#F5B800] rounded-full"></span>
@@ -713,6 +668,10 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="group relative"
                 >
+                        <Link
+        to={service.link}
+        className="block text-inherit no-underline"
+      >
                   {/* IMAGE */}
                   <div className="overflow-hidden rounded-xl">
                     <img
@@ -757,6 +716,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -782,108 +742,7 @@ const Home = () => {
       {/* secrvice grid section closed */}
 
       <TestimonialSection />
-      {/* testimonial sections
-      <section className="relative py-24 bg-black text-white">
-        {/* Background Image 
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=80"
-            className="w-full h-full object-cover opacity-30"
-            alt="bg"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          {/* Heading
-          <h4 className="text-[#F5B800] font-semibold uppercase tracking-[0.2em] mb-3">
-            Testimonials
-          </h4>
-
-          <h2 className="text-xl md:text-4xl font-bold mb-4">
-            What Clients Say About Akshar Consultancy
-          </h2>
-
-          <p className="text-gray-300 max-w-2xl mx-auto mb-16">
-            We are proud to provide trusted taxation, GST, and financial
-            services with complete client satisfaction.
-          </p>
-
-          {/* Cards *
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1 
-            <div className="bg-gray-100 text-gray-700 p-8 text-left shadow-lg relative rounded-lg">
-              <span className="text-5xl text-[#F5B800] absolute top-6 left-6">
-                “
-              </span>
-
-              <p className="mt-8 mb-10 leading-relaxed">
-                Akshar Consultancy has been very supportive in managing our
-                accounts and taxation. Their expert advice helped us grow
-                confidently.
-              </p>
-
-              <div className="border-t pt-4">
-                <h4 className="font-semibold text-[#0B2A4A] text-lg">
-                  Umiya Bags
-                </h4>
-                <p className="text-sm text-gray-500">Valued Client</p>
-              </div>
-
-              <span className="absolute bottom-6 right-6 text-5xl text-[#F5B800]">
-                ”
-              </span>
-            </div>
-
-            {/* Card 2 
-            <div className="bg-gray-100 text-gray-700 p-8 text-left shadow-lg relative rounded-lg">
-              <span className="text-5xl text-[#F5B800] absolute top-6 left-6">
-                “
-              </span>
-
-              <p className="mt-8 mb-10 leading-relaxed">
-                We appreciate Akshar Consultancy for their professionalism and
-                deep knowledge of GST and tax compliance. Always reliable
-                support.
-              </p>
-
-              <div className="border-t pt-4">
-                <h4 className="font-semibold text-[#0B2A4A] text-lg">
-                  Devang Steel Corporation
-                </h4>
-                <p className="text-sm text-gray-500">Valued Client</p>
-              </div>
-
-              <span className="absolute bottom-6 right-6 text-5xl text-[#F5B800]">
-                ”
-              </span>
-            </div>
-
-            {/* Card 3 
-            <div className="bg-gray-100 text-gray-700 p-8 text-left shadow-lg relative rounded-lg">
-              <span className="text-5xl text-[#F5B800] absolute top-6 left-6">
-                “
-              </span>
-
-              <p className="mt-8 mb-10 leading-relaxed">
-                Akshar Consultancy simplified our financial processes and
-                ensured compliance. Their team is efficient and highly
-                professional.
-              </p>
-
-              <div className="border-t pt-4">
-                <h4 className="font-semibold text-[#0B2A4A] text-lg">
-                  Yogiraj Parlour
-                </h4>
-                <p className="text-sm text-gray-500">Valued Client</p>
-              </div>
-
-              <span className="absolute bottom-6 right-6 text-5xl text-[#F5B800]">
-                ”
-              </span>
-            </div>
-          </div>
-        </div>
-      </section> */}
+      
       <Footer />
     </div>
   );

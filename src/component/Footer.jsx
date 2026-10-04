@@ -7,7 +7,7 @@ import {
 import { IoLocationSharp } from "react-icons/io5";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { Link } from "react-router-dom";
-import logo from "../assets/akshar-consultancy.png";
+import logo from "../assets/footer-logo.png";
 
 const services = [
   { text: "Finance", path: "/service/msme" },
@@ -72,7 +72,7 @@ const Footer = () => {
             <img
               src={logo}
               alt="Akshar Consultancy Logo"
-              className="h-48 md:h-50 object-contain"
+              className="w-[220px] h-auto mb-4 object-contain"
             />
             <p className="text-silver font-secondary leading-relaxed">
               We provide expert solutions for Tax Returns, Business

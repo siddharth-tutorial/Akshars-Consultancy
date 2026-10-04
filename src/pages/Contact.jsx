@@ -31,7 +31,7 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       title: "Email",
-      desc: "aksharconsultancy@gmail.com",
+      desc: "info@akshartaxconsultancy.in",
       hoverText: "Send email",
     },
     {
@@ -40,12 +40,7 @@ const Contact = () => {
       desc: "A-505 RoseVill Sky, Opp. Pushkar Icon, Ahmedabad, Gujarat - 382350",
       hoverText: "View on map",
     },
-    {
-      icon: FaClock,
-      title: "Business Hours",
-      desc: "Mon-Sat: 10:00 AM - 7:00 PM",
-      hoverText: "Check time",
-    },
+    
   ];
 
   return (
@@ -67,23 +62,23 @@ const Contact = () => {
               Home
             </a>{" "}
             <span>{">"}</span>
-            <span className="text-[#F5B800] font-semibold">Contact Us</span>
+            <span className="text-[#fff] font-semibold">Contact Us</span>
           </div>
         </div>
       </section>
 
       {/* Cards Section */}
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {contactData.map((item, idx) => (
             <div
               key={idx}
               className="group bg-white p-6 rounded-2xl shadow-lg border border-blue-50 text-center transition-all duration-300 hover:shadow-2xl"
             >
-              <item.icon className="text-blue-600 text-3xl mx-auto mb-4" />
-              <h4 className="font-bold text-blue-900 mb-1">{item.title}</h4>
+              <item.icon className="text-[#F5B800] hover:text-[#0B2A4A] text-3xl mx-auto mb-4" />
+              <h4 className="font-bold text-[#0A1F3A] mb-1">{item.title}</h4>
               <p className="text-gray-600 text-sm mb-2">{item.desc}</p>
-              <span className="text-blue-600 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-[#0B2A4A] text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {item.hoverText}
               </span>
             </div>
@@ -137,6 +132,7 @@ const Contact = () => {
                     />
                   </div>
                 </div>
+                <div className="grid md:grid-cols-2 gap-4">
                 <Field
                   name="email"
                   placeholder="Email Address *"
@@ -152,6 +148,7 @@ const Contact = () => {
                   placeholder="Phone Number"
                   className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 />
+                </div>
                 <Field
                   as="select"
                   name="service"
@@ -186,23 +183,29 @@ const Contact = () => {
           <h3 className="text-xl font-bold text-blue-900 mb-4">
             Visit Our Office
           </h3>
-          <div className="h-64 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-            <iframe
-              title="Map"
-              src="https://www.google.com/maps/embed"
-              className="w-full h-full border-0"
-            ></iframe>
-          </div>
+         
+            
+            <div className="h-64 bg-gray-200 rounded-lg mb-6 overflow-hidden">
+  <iframe
+    title="Akshar Tax Consultancy Location"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.3443541883953!2d72.6668952750926!3d23.04783367915605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e878bd1708483%3A0xd458c74c32633230!2sTHE%20CROWN!5e0!3m2!1sen!2sin!4v1791104023591!5m2!1sen!2sin"
+    className="w-full h-[350px] md:h-[450px] border-0"
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="strict-origin-when-cross-origin"
+  ></iframe>
+</div>
+          
           <div className="space-y-4 text-gray-700">
             <p className="flex items-center gap-3">
-              <FaPhoneAlt className="text-blue-600" /> +91-9510990170
+              <FaPhoneAlt className="text-[#0B2A4A]" /> +91 9067640237 | +91 8980471710
             </p>
             <p className="flex items-center gap-3">
-              <FaEnvelope className="text-blue-600" /> info@pvassociates.in
+              <FaEnvelope className="text-[#0B2A4A]" /> info@akshartaxconsultancy.in
             </p>
             <p className="flex items-center gap-3">
-              <FaMapMarkerAlt className="text-blue-600" /> 401, Sunrise Business
-              Center, Nikol, Ahmedabad
+              <FaMapMarkerAlt className="text-[#0B2A4A]" /> 605, The Crown, 6th Floor, Opp. Rangoli Icecream Cafe, Near Gangotri Circle, Nikol, Ahmedabad - 382350
+            
             </p>
           </div>
         </div>

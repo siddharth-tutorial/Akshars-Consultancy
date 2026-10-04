@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
 import { IoMdDownload } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
-import logo from "../assets/akshar-consultancy.png";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,17 +39,14 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0B2A4A]/90 backdrop-blur-lg shadow-lg"
-          : "bg-transparent"
-      }`}
-    >
+     
+      className="fixed top-0 w-full z-50 bg-[#ffffff]/90 backdrop-blur-lg shadow-lg transition-all duration-500  "
+    > 
       {/* NAVBAR */}
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* LOGO */}
         <div className="flex items-center">
-          <img src={logo} alt="logo" className="h-48 md:h-50 object-contain" />
+          <img src={logo} alt="logo" className="h-48 md:h-20 object-contain" />
         </div>
 
         {/* DESKTOP MENU */}
@@ -60,7 +57,7 @@ const Header = () => {
               return (
                 <div key={index} className="relative group">
                   {/* Main */}
-                  <div className="flex items-center gap-1 text-white hover:text-[#F5B800] cursor-pointer transition no-underline py-6">
+                  <div className="flex items-center gap-1 text-[#F5B800] hover:text-[#F5B800] cursor-pointer transition no-underline py-6">
                     {link.name}
                     <FaChevronDown
                       size={12}
@@ -101,7 +98,7 @@ const Header = () => {
                   `no-underline transition-colors ${
                     isActive
                       ? "text-[#F5B800]"
-                      : "text-white hover:text-[#F5B800]"
+                      : "text-[#F5B800] hover:text-[#0A1F3A]"
                   }`
                 }
               >

@@ -7,7 +7,7 @@
 //   const testimonials = [
 //     {
 //       name: "Umiya Bags",
-//       text: "Akshar Consultancy has been very supportive in managing our accounts and taxation.",
+//       text: "Akshar Tax Consultancy has been very supportive in managing our accounts and taxation.",
 //     },
 //     {
 //       name: "Devang Steel Corporation",
@@ -45,7 +45,7 @@
 //         </h4>
 
 //         <h2 className="text-2xl md:text-4xl font-bold mb-12">
-//           What Clients Say About Akshar Consultancy
+//           What Clients Say About Akshar Tax Consultancy
 //         </h2>
 
 //         {/* Swiper Carousel */}
@@ -95,7 +95,7 @@
 //   const testimonials = [
 //     {
 //       name: "Umiya Bags",
-//       text: "Akshar Consultancy has been very supportive in managing our accounts and taxation.",
+//       text: "Akshar Tax Consultancy has been very supportive in managing our accounts and taxation.",
 //     },
 //     {
 //       name: "Devang Steel Corporation",
@@ -133,7 +133,7 @@
 //         </h4>
 
 //         <h2 className="text-2xl md:text-4xl font-bold mb-12">
-//           What Clients Say About Akshar Consultancy
+//           What Clients Say About Akshar Tax Consultancy
 //         </h2>
 
 //         {/* 🔥 SWIPER */}
@@ -187,14 +187,14 @@ const TestimonialSection = () => {
   const testimonials = [
     {
       name: "Umiya Bags",
-      text: "Akshar Consultancy has been very supportive in managing our accounts and taxation.",
+      text: "Akshar Tax Consultancy has been very supportive in managing our accounts and taxation.",
     },
     {
-      name: "Devang Steel Corporation",
+      name: "Devika Enterprise ",
       text: "Professional GST and tax support. Highly reliable consultancy services.",
     },
     {
-      name: "Yogiraj Parlour",
+      name: "Yogiraj Milk Agency",
       text: "Simplified financial work and ensured compliance. Highly recommended.",
     },
     {
@@ -202,7 +202,7 @@ const TestimonialSection = () => {
       text: "Best accounting and tax planning services with timely response.",
     },
     {
-      name: "Matru Creation",
+      name: "Matru Enterprise",
       text: "Excellent consultancy service with proper guidance in financial and tax planning.",
     },
   ];
@@ -228,7 +228,7 @@ const TestimonialSection = () => {
         </h4>
 
         <h2 className="text-2xl md:text-4xl font-bold mb-12">
-          What Clients Say About Akshar Consultancy
+          What Clients Say About Akshar Tax Consultancy
         </h2>
 
         {/* Swiper */}

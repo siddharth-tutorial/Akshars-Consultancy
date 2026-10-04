@@ -23,10 +23,9 @@ function Audit() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // simulate async loading (API call / assets load etc.)
     const timer = setTimeout(() => {
-      setLoading(false); // loader close
-    }, 2000); // 2 sec demo
+      setLoading(false);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -36,49 +35,83 @@ function Audit() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex min-h-screen flex-col overflow-x-hidden">
           <Header />
 
-          {/* Hero with Parallax */}
-          <div
-            className="relative bg-cover bg-center py-24 overflow-hidden text-white"
-            style={{ backgroundImage: `url(${bgImage})` }}
+          {/* =====================================================
+              HERO SECTION
+          ====================================================== */}
+          <section
+             className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+            style={{
+              backgroundImage: `url(${bgImage})`,
+            }}
           >
-            {/* overlay-before */}
-            <div className="absolute inset-0 bg-black/40 z-10"></div>
-            {/* overlay-after */}
-            <div className="absolute inset-y-0 right-0 w-2/5 bg-black/20 z-20 [clip-path:polygon(0_0,100%_0,100%_100%,20%_100%)]"></div>
-            
-            <div className="relative z-30 container mx-auto px-4">
+            {/* Background Overlay */}
+             <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
+
+            {/* Right Side Overlay */}
+            <div
+              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
+              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+            ></div>
+            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
+
+            {/* Hero Content */}
+             <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col items-center md:items-start">
-                <h1 className="font-bold text-4xl md:text-5xl mb-4 text-center md:text-left">
+                 <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
                   Audit, Assurance
                 </h1>
-                
-                {/* Custom Breadcrumb */}
-                <nav className="flex justify-center md:justify-start">
-                  <ol className="flex items-center space-x-2 text-white text-sm md:text-base">
+
+                {/* Breadcrumb */}
+                <nav
+                  className="flex justify-center md:justify-start"
+                  aria-label="Breadcrumb"
+                >
+                  <ol className="flex flex-wrap items-center justify-center text-sm text-white sm:text-base md:justify-start">
                     <li>
-                      <a href="/" className="hover:underline">Home</a>
+                      <a
+                        href="/"
+                        className="transition hover:underline"
+                      >
+                        Home
+                      </a>
                     </li>
-                    <li><span className="mx-1">{'>'}</span></li>
+
                     <li>
-                      <a href="/service" className="hover:underline">Service</a>
+                      <span className="mx-2">&gt;</span>
                     </li>
-                    <li><span className="mx-1">{'>'}</span></li>
-                    <li className="font-bold text-[#e45c3c]">
+
+                    <li>
+                      <a
+                        href="/service"
+                        className="transition hover:underline"
+                      >
+                        Service
+                      </a>
+                    </li>
+
+                    <li>
+                      <span className="mx-2">&gt;</span>
+                    </li>
+
+                    <li className="font-semibold text-[#F5B800]">
                       Audit, Assurance
                     </li>
                   </ol>
                 </nav>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* Services Section */}
-          <section className="py-12 bg-gray-50">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* =====================================================
+              SERVICES SECTION
+          ====================================================== */}
+          <section className="bg-gray-50 py-10 sm:py-12 md:py-16">
+            <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
+                {/* Content */}
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -86,16 +119,18 @@ function Audit() {
                   transition={{ duration: 0.6 }}
                   variants={fadeUp}
                 >
-                  <h2 className="font-bold text-3xl mb-4 text-[#e45c3c]">
+                  <h2 className="mb-4 text-2xl font-bold text-[#0B2A4A] sm:text-3xl">
                     What We Offer
                   </h2>
-                  <p className="text-gray-700 mb-4">
-                    As a trusted tax consultant, Akshar Consultancy delivers
+
+                  <p className="mb-4 text-base leading-7 text-gray-700 sm:text-lg">
+                    As a trusted tax consultant, Akshar Tax Consultancy delivers
                     strategic audit and compliance support tailored to
                     businesses and professionals. We ensure your tax,
                     licensing, and financial records meet current regulatory
                     expectations.
                   </p>
+
                   <ul className="space-y-3">
                     {[
                       "Tax Compliance Audits",
@@ -104,33 +139,40 @@ function Audit() {
                       "Financial Control Evaluations",
                       "Regulatory & Document Compliance",
                     ].map((item, i) => (
-                      <li key={i} className="flex items-start text-gray-700">
-                        <FaCheck className="text-green-500 mr-3 mt-1 shrink-0" />
-                        {item}
+                      <li
+                        key={i}
+                        className="flex items-start text-gray-700"
+                      >
+                        <FaCheck className="mr-3 mt-1 shrink-0 text-green-500" />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </motion.div>
-                
+
+                {/* Image */}
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
+                  className="text-center"
                 >
                   <img
                     src={b3}
                     alt="Tax Audit Services"
-                    className="w-full h-auto rounded-xl shadow-lg"
+                    className="mx-auto h-auto w-full max-w-xl rounded-xl object-cover shadow-lg"
                   />
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Audit Process Timeline */}
-          <section className="py-12 bg-white">
-            <div className="container mx-auto px-4">
+          {/* =====================================================
+              AUDIT PROCESS TIMELINE
+          ====================================================== */}
+          <section className="bg-white py-10 sm:py-12 md:py-16">
+            <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -138,12 +180,12 @@ function Audit() {
                 transition={{ duration: 0.6 }}
                 variants={fadeUp}
               >
-                <h2 className="text-center font-bold text-3xl mb-10 text-[#e45c3c]">
+                <h2 className="mb-8 text-center text-2xl font-bold text-[#0B2A4A] sm:mb-10 sm:text-3xl">
                   Our Audit Process
                 </h2>
               </motion.div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {[
                   {
                     step: "01",
@@ -177,11 +219,20 @@ function Audit() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     viewport={{ once: true }}
+                    className="h-full"
                   >
-                    <div className="h-full bg-white border border-gray-100 shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow">
-                      <h4 className="font-bold text-blue-600 text-2xl mb-2">{item.step}</h4>
-                      <h5 className="font-semibold text-lg mb-2 text-gray-900">{item.title}</h5>
-                      <p className="text-gray-500 mb-0">{item.desc}</p>
+                    <div className="flex h-full flex-col rounded-lg border border-gray-100 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6">
+                      <h4 className="mb-2 text-2xl font-bold text-[#F5B800]">
+                        {item.step}
+                      </h4>
+
+                      <h5 className="mb-2 text-lg font-semibold text-[#0A1F3A]">
+                        {item.title}
+                      </h5>
+
+                      <p className="mb-0 leading-6 text-gray-500">
+                        {item.desc}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -189,10 +240,13 @@ function Audit() {
             </div>
           </section>
 
-          {/* Why Choose Us */}
-          <section className="py-12 bg-gray-50">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* =====================================================
+              WHY CHOOSE US
+          ====================================================== */}
+          <section className="bg-gray-50 py-10 sm:py-12 md:py-16">
+            <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
+                {/* Content */}
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -200,67 +254,88 @@ function Audit() {
                   transition={{ duration: 0.6 }}
                   variants={fadeUp}
                 >
-                  <h2 className="font-bold text-3xl mb-6 text-[#e45c3c]">
+                  <h2 className="mb-6 text-2xl font-bold text-[#0B2A4A] sm:text-3xl">
                     Why Clients Choose Us
                   </h2>
+
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <FaShieldAlt className="text-yellow-500 mr-4 mt-1 text-xl shrink-0" />
-                      <span>
-                        <strong className="text-gray-900">Confidential & Ethical:</strong> Data security
-                        and professionalism guaranteed.
+                      <FaShieldAlt className="mr-4 mt-1 shrink-0 text-xl text-yellow-500" />
+
+                      <span className="leading-7">
+                        <strong className="text-gray-900">
+                          Confidential & Ethical:
+                        </strong>{" "}
+                        Data security and professionalism guaranteed.
                       </span>
                     </li>
+
                     <li className="flex items-start">
-                      <FaBusinessTime className="text-red-500 mr-4 mt-1 text-xl shrink-0" />
-                      <span>
-                        <strong className="text-gray-900">SME Focused:</strong> We simplify audit
-                        language and guide you practically.
+                      <FaBusinessTime className="mr-4 mt-1 shrink-0 text-xl text-red-500" />
+
+                      <span className="leading-7">
+                        <strong className="text-gray-900">
+                          SME Focused:
+                        </strong>{" "}
+                        We simplify audit language and guide you practically.
                       </span>
                     </li>
+
                     <li className="flex items-start">
-                      <FaUserTie className="text-green-500 mr-4 mt-1 text-xl shrink-0" />
-                      <span>
-                        <strong className="text-gray-900">Experience You Can Trust:</strong> Decades of
-                        handling tax compliance and audits.
+                      <FaUserTie className="mr-4 mt-1 shrink-0 text-xl text-green-500" />
+
+                      <span className="leading-7">
+                        <strong className="text-gray-900">
+                          Experience You Can Trust:
+                        </strong>{" "}
+                        Decades of handling tax compliance and audits.
                       </span>
                     </li>
                   </ul>
+
+                  {/* Download Brochure */}
                   <a
-                    href="/Akshar_Consultancy.pdf"
+                    href="/Akshar_Tax_Consultancy_Brochure.pdf"
                     target="_blank"
                     rel="noreferrer"
                     download
-                    className="inline-flex items-center px-5 py-2.5 mt-8 border border-blue-600 text-blue-600 font-medium rounded hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                    className="mt-8 inline-flex w-full items-center justify-center rounded border border-[#0B2A4A] px-5 py-2.5 font-medium text-blue-[#0B2A4A] transition-colors duration-300 hover:bg-[#0B2A4A] hover:text-white sm:w-auto"
                   >
-                    <FaDownload className="mr-2" /> Download Brochure
+                    <FaDownload className="mr-2" />
+                    Download Brochure
                   </a>
                 </motion.div>
-                
+
+                {/* Image */}
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
+                  className="text-center"
                 >
                   <img
                     src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=60"
                     alt="Why Choose Us"
-                    className="w-full h-auto rounded-xl shadow-lg"
+                    className="mx-auto h-auto w-full max-w-xl rounded-xl object-cover shadow-lg"
                   />
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* WhatsApp Floating Button */}
+          {/* =====================================================
+              FLOATING WHATSAPP BUTTON
+          ====================================================== */}
           <a
-            href="https://wa.me/9190676640237"
+            href="https://wa.me/919067640237"
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-5 right-5 bg-[#25d366] text-white rounded-full w-14 h-14 flex justify-center items-center shadow-lg z-[9999] text-2xl hover:scale-110 transition-transform duration-300"
+            aria-label="Chat with us on WhatsApp at +91 9067640237"
+            title="WhatsApp: +91 9067640237"
+            className="fixed bottom-5 right-4 z-[9999] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
           >
-            <FaWhatsapp />
+            <FaWhatsapp className="text-2xl sm:text-3xl" />
           </a>
 
           <Footer />

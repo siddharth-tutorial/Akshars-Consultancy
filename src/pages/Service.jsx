@@ -1,4 +1,3 @@
-
 import { FaArrowRight, FaGlobeEurope, FaMoneyCheckAlt, FaUniversity } from "react-icons/fa";
 import { FaCoins, FaFileInvoiceDollar, FaPen } from "react-icons/fa6";
 
@@ -65,18 +64,19 @@ function Service() {
 
       {/* Hero Section */}
       <div
-        className="relative bg-cover bg-center text-white py-24 overflow-hidden"
+        className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-black/40 z-[1]"></div>
-        <div
-          className="absolute top-0 right-0 w-2/5 h-full bg-black/20 z-[2] hidden md:block"
-          style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
-        ></div>
+           <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
+      <div
+              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
+              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+            ></div>
+            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-[3]">
-          <div className="flex flex-col">
-            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-center md:text-left">
+         <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center md:items-start">
+            <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               Our Services
             </h1>
 
@@ -92,7 +92,7 @@ function Service() {
                 </li>
                 <li className="flex items-center text-white">
                   <span className="mx-2 text-white/80">&gt;</span>
-                  <span className="text-[#fff] font-bold">Our Services</span>
+                  <span className="font-semibold text-[#F5B800]">Our Services</span>
                 </li>
               </ol>
             </nav>

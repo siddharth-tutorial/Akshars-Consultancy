@@ -45,10 +45,14 @@ const Header = () => {
       {/* NAVBAR */}
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* LOGO */}
-        <div className="flex items-center">
-          <img src={logo} alt="logo" className="h-48 md:h-20 object-contain" />
-        </div>
-
+      
+<div className="flex items-center justify-center">
+  <img
+    src={logo}
+    alt="Akshar Tax Consultancy Logo"
+    className="w-[220px] sm:w-[220px] md:w-[240px] h-auto object-contain"
+  />
+</div>
         {/* DESKTOP MENU */}
         <nav className="hidden md:flex items-center gap-10 font-semibold">
           {navLinks.map((link, index) => {

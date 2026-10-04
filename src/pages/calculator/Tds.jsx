@@ -1,520 +1,432 @@
 
-// export default Tds;
-
-// import React, { useState, useEffect } from "react";
-// import Header from "../../component/Header";
-// import Footer from "../../component/Footer";
-
-// // Your logic preserved exactly as provided
-// const sectionRates = {
-//   "193,interest on Securities": 10,
-//   "194, Dividend": 10,
-//   "194A,Interest other than interest on Securities": 10,
-//   "194B, Winnings from lotteries, crossword puzzles,": 30,
-//   "194BB,Winnings from Horse Races": 30,
-//   "194C, Payment to Contractor/Sub Contractor(INDIVIDUAL/HUF)": 1,
-//   "194C,payment to Contractors/Sub Contractor(OTHERS)": 2,
-//   "194C,Payment to Transporter": 0,
-//   "194D,Insurance Commission": 5,
-//   "194E,Non-Resident Sportsman or Sports Association": 20,
-//   "194EE,Payment for National Savings Scheme": 10,
-//   "194F,Payment for Repurchase of units": 15,
-//   "194G,Commission on Sale of Lottery Ticket": 5,
-//   "194H,Commission": 5,
-//   "194I,Rent on Land and Building": 10,
-//   "194I,Rent on Plant and Machinery": 2,
-//   "194IA,Payment on Transfer of Immoveable Property": 1,
-//   "194IB,payment on Rent by Individual/HUF": 5,
-//   "194J,Fees for Professional or Technical Services": 10,
-//   "194J,remuneration or commission paid to director": 10,
-//   "194J,Fee for Technical Services": 2,
-//   "194J,Payments to Call Center Operator": 2,
-//   "194LA,Payment of Compensation for Immovable Property": 10,
-//   "194LB,Interest from infrastructure debt fund": 5,
-//   "194LC,Interest from specified indian company": 5,
-//   "194K,Payment of Dividend by Mutual Funds": 10,
-//   "194M,Payment to Contractors/Professional by Individual/HUF": 5,
-//   "194N,TDS on Cash Withdrawls above 1 Crore": 2,
-//   "194O,TDS on Ecommerce Participants": 1,
-//   "195,Payment to NOn-Resident (Long Term Capital Gains)": 20,
-//   "195,Payment to Non-Resident(Rent)": 30,
-//   "195,Payment to Non-Resident(Royality)": 50,
-//   "195,Payment to Non-Resident (Winning from Lottery /Horse Races etc.)": 30,
-//   "206C,Alcoholic liquor for human consumption": 1,
-//   "206c,Timber obtained under a forest lease": 2.5,
-//   "206C,Timber obtained under any mode other than forest lease": 2.5,
-//   "206C,Any other forest product not being timber or tendu leave": 2.5,
-//   "206C,Scrap": 1,
-//   "206C,Parking Lot": 2,
-//   "206C,Toll Plaza": 2,
-//   "206C,Minning and Quarrying": 2,
-//   "206C,Tendu leaves": 2,
-//   "206C,Minerals, being coal or lignite or iron ore": 1,
-//   "206C,Bullion, jewelleryor Any other goods or services": 1,
-// };
-
-// const sectionNotes = {
-//   193: "No TDS is deductible for payments not exceeding Rs. 5000.",
-//   "194A":
-//     "No TDS is deductible for payments not exceeding Rs. 10000 (Banks) & Rs. 5000 (Others)",
-//   "194B": "No TDS is deductible for payments not exceeding Rs. 10000",
-//   "194BB": "No TDS is deductible for payments not exceeding Rs. 10000",
-//   "194C":
-//     "No TDS is deductible for payments not exceeding Rs. 30000 Per Contract or Rs. 100000 per Annum",
-//   "194D": "No TDS is deductible for payments not exceeding Rs. 15000.",
-//   "194EE": "No TDS is deductible for payments not exceeding Rs. 2500.",
-//   "194F": "No TDS is deductible for payments not exceeding Rs. 1000.",
-//   "194G": "No TDS is deductible for payments not exceeding Rs. 15000.",
-//   "194H": "No TDS is deductible for payments not exceeding Rs. 15000.",
-//   "194I": "No TDS is deductible for payments not exceeding Rs. 240000",
-//   "194IA": "No TDS is deductible for payments not exceeding Rs. 5000000",
-//   "194IB": "No TDS is deductible for payments not exceeding Rs. 50000",
-//   "194J": "No TDS is deductible for payments not exceeding Rs. 30000",
-//   "194LA": "No TDS is deductible for payments not exceeding Rs. 250000",
-//   "194K": "No TDS is deductible for payments not exceeding Rs. 5000",
-//   "194M": "No TDS is deductible for payments not exceeding Rs. 5000000",
-//   "194O": "No TDS is deductible for payments not exceeding Rs. 0",
-// };
-
-// function Tds() {
-//   const bgImage =
-//     "https://img.ledgers.cloud/guides/feature_image/Gemini_Generated_Image_6srnj16srnj16srn.webp";
-//   const [rate, setRate] = useState(0);
-//   const [amount, setAmount] = useState(0);
-//   const [section, setSection] = useState("");
-//   const [panQuoted, setPanQuoted] = useState("Yes");
-
-//   const tax = ((rate / 100) * amount).toFixed(2);
-//   const sectionCode = section.split(",")[0].toUpperCase();
-
-//   useEffect(() => {
-//     if (!section) {
-//       setRate(0);
-//       return;
-//     }
-//     const baseRate = sectionRates[section] || 0;
-//     if (sectionCode === "206C") {
-//       setRate(baseRate);
-//     } else {
-//       setRate(panQuoted === "No" ? 20 : baseRate);
-//     }
-//   }, [section, panQuoted,sectionCode]);
-
-//   return (
-//     <>
-//       <Header />
-//       {/* Banner Section */}
-//       <section
-//         className="relative bg-cover bg-center py-28 overflow-hidden"
-//         style={{ backgroundImage: `url(${bgImage})` }}
-//       >
-//         <div className="absolute inset-0 bg-black/50"></div>
-
-//         <div
-//           className="absolute top-0 right-0 h-full w-[40%] bg-black/20"
-//           style={{
-//             clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)",
-//           }}
-//         ></div>
-
-//         <div className="relative z-10 max-w-7xl mx-auto px-4">
-//           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-//             TDS Calculator
-//           </h1>
-
-//           <div className="flex items-center gap-2 text-white">
-//             <a href="/" className="hover:underline">
-//               Home
-//             </a>
-//             <span>{">"}</span>
-//             <span className="text-[#F5B800] font-semibold">TDS Calculator</span>
-//           </div>
-//         </div>
-//       </section>
-//       {/* Main Content */}
-//       <div className="container mx-auto py-10 px-4">
-//         <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden">
-//           <div className="p-6 bg-gray-50">
-//             <div className="flex flex-wrap -mx-3 mb-4">
-//               <div className="w-full md:w-1/2 px-3 mb-4">
-//                 <label className="block mb-2 font-semibold text-gray-700">
-//                   Section
-//                 </label>
-//                 <select
-//                   className="w-full p-2 border border-gray-300 rounded shadow-sm"
-//                   value={section}
-//                   onChange={(e) => setSection(e.target.value)}
-//                 >
-//                   <option value="">Select</option>
-//                   {Object.keys(sectionRates).map((item, idx) => (
-//                     <option key={idx} value={item}>
-//                       {item}
-//                     </option>
-//                   ))}
-//                 </select>
-//               </div>
-//               {!sectionCode.startsWith("206C") && (
-//                 <div className="w-full md:w-1/2 px-3 mb-4">
-//                   <label className="block mb-2 font-semibold text-gray-700">
-//                     PAN quoted by deductee
-//                   </label>
-//                   <select
-//                     className="w-full p-2 border border-gray-300 rounded shadow-sm"
-//                     value={panQuoted}
-//                     onChange={(e) => setPanQuoted(e.target.value)}
-//                   >
-//                     <option>Yes</option>
-//                     <option>No</option>
-//                   </select>
-//                 </div>
-//               )}
-//             </div>
-
-//             {/* Rate Slider */}
-//             <div className="flex items-center mb-6">
-//               <div className="w-1/4 md:w-1/6">
-//                 <label className="block font-semibold text-gray-700">
-//                   Rate:
-//                 </label>
-//                 <input
-//                   type="text"
-//                   className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-//                   value={rate}
-//                   readOnly
-//                 />
-//               </div>
-//               <div className="px-3 font-bold text-xl">%</div>
-//               <div className="flex-grow">
-//                 <input
-//                   type="range"
-//                   className="w-full"
-//                   min={0}
-//                   max={50}
-//                   step={0.5}
-//                   value={rate}
-//                   disabled
-//                 />
-//               </div>
-//             </div>
-
-//             {/* Amount Slider */}
-//             <div className="flex items-center mb-6">
-//               <div className="w-1/4 md:w-1/6">
-//                 <label className="block font-semibold text-gray-700">
-//                   Amount:
-//                 </label>
-//                 <input
-//                   type="number"
-//                   className="w-full p-2 border border-gray-300 rounded"
-//                   value={amount}
-//                   onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-//                 />
-//               </div>
-//               <div className="px-3 font-bold text-xl">0</div>
-//               <div className="flex-grow">
-//                 <input
-//                   type="range"
-//                   className="w-full"
-//                   min={0}
-//                   max={100000}
-//                   step={1000}
-//                   value={amount}
-//                   onChange={(e) => setAmount(parseFloat(e.target.value))}
-//                 />
-//               </div>
-//             </div>
-
-//             {/* Tax Result */}
-//             <div className="mb-6">
-//               <label className="block font-semibold text-gray-700">Tax:</label>
-//               <input
-//                 className="w-full p-2 border border-gray-300 rounded bg-gray-100 font-bold"
-//                 value={tax}
-//                 readOnly
-//               />
-//             </div>
-
-//             {/* Conditional Notes */}
-//             {section ===
-//               "206C,Bullion, jewelleryor Any other goods or services" && (
-//               <p className="font-bold text-gray-800 bg-yellow-100 p-4 rounded border-l-4 border-yellow-500">
-//                 Note:- If sale consideration is paid in cash exceeding Rs. 5
-//                 lakhs (Jewellery), Rs. 2 lakhs (Bullion), or Rs. 2 lakhs (other
-//                 goods/services where TDS is not deducted)
-//               </p>
-//             )}
-//             {section &&
-//               section !==
-//                 "206C,Bullion, jewelleryor Any other goods or services" &&
-//               sectionNotes[sectionCode] && (
-//                 <p className="font-bold text-gray-800 bg-blue-100 p-4 rounded border-l-4 border-blue-500">
-//                   Note:- {sectionNotes[sectionCode]}
-//                 </p>
-//               )}
-//           </div>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-// export default Tds;
-import React, { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 
-// Your logic preserved exactly as provided
-const sectionRates = {
-  "193,interest on Securities": 10,
-  "194, Dividend": 10,
-  "194A,Interest other than interest on Securities": 10,
-  "194B, Winnings from lotteries, crossword puzzles,": 30,
-  "194BB,Winnings from Horse Races": 30,
-  "194C, Payment to Contractor/Sub Contractor(INDIVIDUAL/HUF)": 1,
-  "194C,payment to Contractors/Sub Contractor(OTHERS)": 2,
-  "194C,Payment to Transporter": 0,
-  "194D,Insurance Commission": 5,
-  "194E,Non-Resident Sportsman or Sports Association": 20,
-  "194EE,Payment for National Savings Scheme": 10,
-  "194F,Payment for Repurchase of units": 15,
-  "194G,Commission on Sale of Lottery Ticket": 5,
-  "194H,Commission": 5,
-  "194I,Rent on Land and Building": 10,
-  "194I,Rent on Plant and Machinery": 2,
-  "194IA,Payment on Transfer of Immoveable Property": 1,
-  "194IB,payment on Rent by Individual/HUF": 5,
-  "194J,Fees for Professional or Technical Services": 10,
-  "194J,remuneration or commission paid to director": 10,
-  "194J,Fee for Technical Services": 2,
-  "194J,Payments to Call Center Operator": 2,
-  "194LA,Payment of Compensation for Immovable Property": 10,
-  "194LB,Interest from infrastructure debt fund": 5,
-  "194LC,Interest from specified indian company": 5,
-  "194K,Payment of Dividend by Mutual Funds": 10,
-  "194M,Payment to Contractors/Professional by Individual/HUF": 5,
-  "194N,TDS on Cash Withdrawls above 1 Crore": 2,
-  "194O,TDS on Ecommerce Participants": 1,
-  "195,Payment to NOn-Resident (Long Term Capital Gains)": 20,
-  "195,Payment to Non-Resident(Rent)": 30,
-  "195,Payment to Non-Resident(Royality)": 50,
-  "195,Payment to Non-Resident (Winning from Lottery /Horse Races etc.)": 30,
-  "206C,Alcoholic liquor for human consumption": 1,
-  "206c,Timber obtained under a forest lease": 2.5,
-  "206C,Timber obtained under any mode other than forest lease": 2.5,
-  "206C,Any other forest product not being timber or tendu leave": 2.5,
-  "206C,Scrap": 1,
-  "206C,Parking Lot": 2,
-  "206C,Toll Plaza": 2,
-  "206C,Minning and Quarrying": 2,
-  "206C,Tendu leaves": 2,
-  "206C,Minerals, being coal or lignite or iron ore": 1,
-  "206C,Bullion, jewelleryor Any other goods or services": 1,
-};
+/**
+ * TDS Calculator - Income-tax Act 2025 (effective 1 Apr 2026)
+ * with old 1961 Act sections.
+ *
+ * Payment codes marked `code: null` are not verified here.
+ * Confirm on the official Section 393 table / TRACES utility
+ * before filing.
+ *
+ * rate/noPan are in %.
+ * single/aggregate are thresholds in INR (null = none).
+ */
 
-const sectionNotes = {
-  193: "No TDS is deductible for payments not exceeding Rs. 5000.",
-  "194A":
-    "No TDS is deductible for payments not exceeding Rs. 10000 (Banks) & Rs. 5000 (Others)",
-  "194B": "No TDS is deductible for payments not exceeding Rs. 10000",
-  "194BB": "No TDS is deductible for payments not exceeding Rs. 10000",
-  "194C":
-    "No TDS is deductible for payments not exceeding Rs. 30000 Per Contract or Rs. 100000 per Annum",
-  "194D": "No TDS is deductible for payments not exceeding Rs. 15000.",
-  "194EE": "No TDS is deductible for payments not exceeding Rs. 2500.",
-  "194F": "No TDS is deductible for payments not exceeding Rs. 1000.",
-  "194G": "No TDS is deductible for payments not exceeding Rs. 15000.",
-  "194H": "No TDS is deductible for payments not exceeding Rs. 15000.",
-  "194I": "No TDS is deductible for payments not exceeding Rs. 240000",
-  "194IA": "No TDS is deductible for payments not exceeding Rs. 5000000",
-  "194IB": "No TDS is deductible for payments not exceeding Rs. 50000",
-  "194J": "No TDS is deductible for payments not exceeding Rs. 30000",
-  "194LA": "No TDS is deductible for payments not exceeding Rs. 250000",
-  "194K": "No TDS is deductible for payments not exceeding Rs. 5000",
-  "194M": "No TDS is deductible for payments not exceeding Rs. 5000000",
-  "194O": "No TDS is deductible for payments not exceeding Rs. 0",
-};
+const PAYMENTS = [
+  {
+    id: "c-ind",
+    name: "Contractor - Individual/HUF",
+    old: "194C",
+    sec: "393(1) Sl.6(i)",
+    code: "1023",
+    rate: 1,
+    single: 30000,
+    aggregate: 100000,
+  },
+  {
+    id: "c-oth",
+    name: "Contractor - Others (Company/Firm)",
+    old: "194C",
+    sec: "393(1) Sl.6(i)",
+    code: "1024",
+    rate: 2,
+    single: 30000,
+    aggregate: 100000,
+  },
+  {
+    id: "j-tech",
+    name: "Technical services / Call centre / Film royalty",
+    old: "194J(a)",
+    sec: "393(1) Sl.6(iii)",
+    code: "1026",
+    rate: 2,
+    single: null,
+    aggregate: 50000,
+  },
+  {
+    id: "j-prof",
+    name: "Professional fees / Royalty / Non-compete",
+    old: "194J(b)",
+    sec: "393(1) Sl.6(iii)",
+    code: "1027",
+    rate: 10,
+    single: null,
+    aggregate: 50000,
+  },
+  {
+    id: "j-dir",
+    name: "Director's fees / commission",
+    old: "194J",
+    sec: "393(1) Sl.6(iii)",
+    code: "1028",
+    rate: 10,
+    single: null,
+    aggregate: null,
+  },
+  {
+    id: "comm",
+    name: "Commission / Brokerage",
+    old: "194H",
+    sec: "393(1) Sl.1(ii)",
+    code: "1006",
+    rate: 2,
+    single: null,
+    aggregate: 20000,
+  },
+  {
+    id: "div",
+    name: "Dividend (domestic company)",
+    old: "194",
+    sec: "393(1) Sl.7",
+    code: "1029",
+    rate: 10,
+    single: null,
+    aggregate: 10000,
+  },
+  {
+    id: "goods",
+    name: "Purchase of goods (above Rs 50 lakh)",
+    old: "194Q",
+    sec: "393(1)",
+    code: "1031",
+    rate: 0.1,
+    single: null,
+    aggregate: 5000000,
+    noPan: 5,
+  },
+  {
+    id: "rent-b",
+    name: "Rent - Land / Building / Furniture",
+    old: "194-I(b)",
+    sec: "393(1)",
+    code: null,
+    rate: 10,
+    single: null,
+    aggregate: 240000,
+  },
+  {
+    id: "rent-p",
+    name: "Rent - Plant / Machinery",
+    old: "194-I(a)",
+    sec: "393(1)",
+    code: null,
+    rate: 2,
+    single: null,
+    aggregate: 240000,
+  },
+  {
+    id: "int",
+    name: "Interest other than securities (non-bank)",
+    old: "194A",
+    sec: "393(1)",
+    code: null,
+    rate: 10,
+    single: null,
+    aggregate: 10000,
+  },
+  {
+    id: "ecom",
+    name: "E-commerce operator to participant",
+    old: "194O",
+    sec: "393(1)",
+    code: null,
+    rate: 0.1,
+    single: null,
+    aggregate: null,
+    noPan: 5,
+  },
+  {
+    id: "vda",
+    name: "Virtual digital assets",
+    old: "194S",
+    sec: "393(1)",
+    code: null,
+    rate: 1,
+    single: null,
+    aggregate: 10000,
+  },
+  {
+    id: "194m",
+    name: "Contract/Professional by Individual/HUF (non-audit)",
+    old: "194M",
+    sec: "393(1) Sl.6(ii)",
+    code: null,
+    rate: 2,
+    single: null,
+    aggregate: 5000000,
+  },
+];
 
-function Tds() {
-  const bgImage =
-    "https://img.ledgers.cloud/guides/feature_image/Gemini_Generated_Image_6srnj16srnj16srn.webp";
-  const [rate, setRate] = useState(0);
-  const [amount, setAmount] = useState(0);
-  const [section, setSection] = useState("");
-  const [panQuoted, setPanQuoted] = useState("Yes");
+const inr = (n) =>
+  "Rs " +
+  Number(n || 0).toLocaleString("en-IN", {
+    maximumFractionDigits: 2,
+  });
 
-  const tax = ((rate / 100) * amount).toFixed(2);
-  const sectionCode = section.split(",")[0].toUpperCase();
+export default function TdsCalculator() {
+  const [id, setId] = useState(PAYMENTS[0].id);
+  const [amount, setAmount] = useState("");
+  const [prior, setPrior] = useState("");
+  const [hasPan, setHasPan] = useState(true);
 
-  useEffect(() => {
-    if (!section) {
-      setRate(0);
-      return;
-    }
-    const baseRate = sectionRates[section] || 0;
-    if (sectionCode === "206C") {
-      setRate(baseRate);
-    } else {
-      setRate(panQuoted === "No" ? 20 : baseRate);
-    }
-  }, [section, panQuoted, sectionCode]);
+  const p = PAYMENTS.find((x) => x.id === id);
+
+  const r = useMemo(() => {
+    const amt = parseFloat(amount) || 0;
+    const prev = parseFloat(prior) || 0;
+    const total = prev + amt;
+
+    const hit =
+      (p.single != null && amt > p.single) ||
+      (p.aggregate != null && total > p.aggregate) ||
+      (p.single == null && p.aggregate == null);
+
+    const rate = hasPan
+      ? p.rate
+      : p.noPan ?? Math.max(p.rate * 2, 20);
+
+    const tds = hit && amt > 0 ? (amt * rate) / 100 : 0;
+
+    return {
+      amt,
+      hit,
+      rate,
+      tds,
+      net: amt - tds,
+    };
+  }, [amount, prior, hasPan, p]);
+
+  const field =
+    "w-full rounded-lg border border-slate-300 bg-white px-3 py-3 text-sm text-slate-800 shadow-sm transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:text-base";
 
   return (
     <>
+      {/* =========================
+          HEADER
+      ========================== */}
       <Header />
-      {/* Banner Section */}
-      <section
-        className="relative bg-cover bg-center py-28 overflow-hidden"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
 
-        <div
-          className="absolute top-0 right-0 h-full w-[40%] bg-black/20"
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)",
-          }}
-        ></div>
+      {/* =========================
+          MAIN TDS SECTION
+      ========================== */}
+      <section className="min-h-screen overflow-x-hidden bg-slate-100 py-8 sm:py-10 md:py-14">
+        
+        {/* 1300px Main Container */}
+        <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            TDS Calculator
-          </h1>
+          {/* Calculator Wrapper */}
+          <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:p-8">
 
-          <div className="flex items-center gap-2 text-white">
-            <a href="/" className="hover:underline">
-              Home
-            </a>
-            <span>{">"}</span>
-            <span className="text-[#F5B800] font-semibold">TDS Calculator</span>
-          </div>
-        </div>
-      </section>
-      {/* Main Content */}
-      <div className="container mx-auto py-10 px-4">
-        <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden">
-          <div className="p-6 bg-gray-50">
-            <div className="flex flex-wrap -mx-3 mb-4">
-              <div className="w-full md:w-1/2 px-3 mb-4">
-                <label className="block mb-2 font-semibold text-gray-700">
-                  Section
+            {/* =========================
+                HEADER
+            ========================== */}
+            <div className="mb-6 border-b border-slate-200 pb-5 sm:mb-7">
+              <h1 className="font-primary text-2xl font-bold leading-tight text-slate-900 sm:text-3xl md:text-4xl">
+                TDS Calculator
+              </h1>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6">
+                Income-tax Act 2025 (from 1 Apr 2026) - with old section
+                numbers
+              </p>
+            </div>
+
+            {/* =========================
+                NATURE OF PAYMENT
+            ========================== */}
+            <div className="mb-5">
+              <label className="mb-2 block text-sm font-medium text-slate-700">
+                Nature of payment
+              </label>
+
+              <select
+                className={field}
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+              >
+                {PAYMENTS.map((x) => (
+                  <option key={x.id} value={x.id}>
+                    {x.old} - {x.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* =========================
+                AMOUNT INPUTS
+            ========================== */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+              {/* Payment Amount */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Payment amount (Rs)
                 </label>
-                <select
-                  className="w-full p-2 border border-gray-300 rounded shadow-sm"
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {Object.keys(sectionRates).map((item, idx) => (
-                    <option key={idx} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
+
+                <input
+                  type="number"
+                  inputMode="decimal"
+                  min="0"
+                  className={field}
+                  placeholder="e.g. 50000"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
               </div>
-              {!sectionCode.startsWith("206C") && (
-                <div className="w-full md:w-1/2 px-3 mb-4">
-                  <label className="block mb-2 font-semibold text-gray-700">
-                    PAN quoted by deductee
-                  </label>
-                  <select
-                    className="w-full p-2 border border-gray-300 rounded shadow-sm"
-                    value={panQuoted}
-                    onChange={(e) => setPanQuoted(e.target.value)}
-                  >
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
+
+              {/* Earlier Payments */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Earlier payments this year (Rs)
+                </label>
+
+                <input
+                  type="number"
+                  inputMode="decimal"
+                  min="0"
+                  className={field}
+                  placeholder="0"
+                  value={prior}
+                  onChange={(e) => setPrior(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* =========================
+                PAN CHECKBOX
+            ========================== */}
+            <label className="mt-5 flex cursor-pointer items-center justify-between gap-4 rounded-lg bg-slate-50 px-3 py-3.5 sm:px-4">
+              <span className="text-sm font-medium leading-5 text-slate-700">
+                Deductee has valid PAN
+              </span>
+
+              <input
+                type="checkbox"
+                className="h-5 w-5 shrink-0 accent-indigo-600"
+                checked={hasPan}
+                onChange={(e) => setHasPan(e.target.checked)}
+              />
+            </label>
+
+            {/* =========================
+                SECTION DETAILS
+            ========================== */}
+            <div className="mt-6">
+              <h2 className="mb-3 font-primary text-base font-semibold text-slate-800 sm:text-lg">
+                TDS Details
+              </h2>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+                <Info
+                  label="Old section (1961)"
+                  value={p.old}
+                />
+
+                <Info
+                  label="New section (2025)"
+                  value={p.sec}
+                />
+
+                <Info
+                  label="Payment code"
+                  value={p.code ?? "Verify on official table"}
+                />
+
+                <Info
+                  label="Rate applied"
+                  value={`${r.rate}%`}
+                />
+
+                <Info
+                  label="Single limit"
+                  value={p.single ? inr(p.single) : "-"}
+                />
+
+                <Info
+                  label="Annual limit"
+                  value={p.aggregate ? inr(p.aggregate) : "None"}
+                />
+              </div>
+            </div>
+
+            {/* =========================
+                RESULT
+            ========================== */}
+            <div className="mt-6 rounded-xl bg-indigo-600 p-4 text-white sm:p-5">
+
+              <div className="text-sm opacity-80">
+                TDS to deduct
+              </div>
+
+              <div className="mt-1 break-words text-2xl font-bold sm:text-3xl md:text-4xl">
+                {inr(r.tds)}
+              </div>
+
+              <div className="mt-4 flex flex-col gap-1 border-t border-white/20 pt-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                <span className="opacity-90">
+                  Net payable
+                </span>
+
+                <span className="break-words text-base font-semibold sm:text-lg">
+                  {inr(r.net)}
+                </span>
+              </div>
+
+              {/* Below Threshold */}
+              {r.amt > 0 && !r.hit && (
+                <div className="mt-3 rounded-lg bg-white/20 px-3 py-2 text-xs leading-5">
+                  Below threshold - no TDS applicable on this payment.
+                </div>
+              )}
+
+              {/* No PAN */}
+              {!hasPan && (
+                <div className="mt-3 rounded-lg bg-white/20 px-3 py-2 text-xs leading-5">
+                  No PAN: higher rate applied (Sec 397(2), old 206AA).
                 </div>
               )}
             </div>
 
-            {/* Rate Slider */}
-            <div className="flex items-center mb-6">
-              <div className="w-1/4 md:w-1/6">
-                <label className="block font-semibold text-gray-700">
-                  Rate:
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                  value={rate}
-                  readOnly
-                />
-              </div>
-              <div className="px-3 font-bold text-xl">%</div>
-              <div className="flex-grow">
-                <input
-                  type="range"
-                  className="w-full"
-                  min={0}
-                  max={50}
-                  step={0.5}
-                  value={rate}
-                  disabled
-                />
-              </div>
-            </div>
+            {/* =========================
+                DISCLAIMER
+            ========================== */}
+            <p className="mt-5 text-xs leading-5 text-slate-400 sm:leading-6">
+              Indicative only. Salary TDS is now Sec 392 (old 192), TCS is
+              Sec 394 (old 206C). Rates, thresholds and codes can change -
+              verify with the official Section 393 table / CBDT notifications.
+            </p>
 
-            {/* Amount Slider */}
-            <div className="flex items-center mb-6">
-              <div className="w-1/4 md:w-1/6">
-                <label className="block font-semibold text-gray-700">
-                  Amount:
-                </label>
-                <input
-                  type="number"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  value={amount}
-                  onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-                />
-              </div>
-              <div className="px-3 font-bold text-xl">0</div>
-              <div className="flex-grow">
-                <input
-                  type="range"
-                  className="w-full"
-                  min={0}
-                  max={100000}
-                  step={1000}
-                  value={amount}
-                  onChange={(e) => setAmount(parseFloat(e.target.value))}
-                />
-              </div>
-            </div>
-
-            {/* Tax Result */}
-            <div className="mb-6">
-              <label className="block font-semibold text-gray-700">Tax:</label>
-              <input
-                className="w-full p-2 border border-gray-300 rounded bg-gray-100 font-bold"
-                value={tax}
-                readOnly
-              />
-            </div>
-
-            {/* Conditional Notes */}
-            {section ===
-              "206C,Bullion, jewelleryor Any other goods or services" && (
-              <p className="font-bold text-gray-800 bg-yellow-100 p-4 rounded border-l-4 border-yellow-500">
-                Note:- If sale consideration is paid in cash exceeding Rs. 5
-                lakhs (Jewellery), Rs. 2 lakhs (Bullion), or Rs. 2 lakhs (other
-                goods/services where TDS is not deducted)
-              </p>
-            )}
-            {section &&
-              section !==
-                "206C,Bullion, jewelleryor Any other goods or services" &&
-              sectionNotes[sectionCode] && (
-                <p className="font-bold text-gray-800 bg-blue-100 p-4 rounded border-l-4 border-blue-500">
-                  Note:- {sectionNotes[sectionCode]}
-                </p>
-              )}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* =========================
+          FOOTER
+      ========================== */}
       <Footer />
     </>
   );
 }
 
-export default Tds;
+/* =========================
+    INFO COMPONENT
+========================= */
+function Info({ label, value }) {
+  return (
+    <div className="min-w-0 rounded-lg border border-slate-200 bg-white p-3 transition-all duration-200 hover:border-indigo-200 hover:shadow-sm sm:p-4">
+
+      <div className="text-xs leading-5 text-slate-500 sm:text-sm">
+        {label}
+      </div>
+
+      <div className="mt-1 break-words text-sm font-semibold leading-5 text-slate-800 sm:text-base">
+        {value}
+      </div>
+
+    </div>
+  );
+}

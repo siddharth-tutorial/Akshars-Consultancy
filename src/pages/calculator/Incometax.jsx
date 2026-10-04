@@ -302,6 +302,9 @@
 //   );
 // }
 import React, { useState } from "react";
+import Footer from "../../component/Footer";
+import Header from "../../component/Header";
+// import bgImage from "../../assets/images/incometax.jpg";
 
 export default function IncomeTaxCalculator() {
   const initialState = {
@@ -622,9 +625,50 @@ export default function IncomeTaxCalculator() {
       </td>
     </tr>
   );
+   const bgImage =
+    "https://www.deskera.com/blog/content/images/2021/09/pexels-oleg-magni-2058137-1.jpg";  
 
   return (
-    <div className="min-h-screen bg-gray-100 p-5">
+    <>
+     <Header />
+
+      {/* Hero */}
+    
+      <section
+  className="relative flex min-h-[260px] items-center overflow-hidden bg-cover bg-center py-12 sm:min-h-[300px] sm:py-14 md:min-h-[360px] md:py-20"
+  style={{ backgroundImage: `url(${bgImage})` }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/50" />
+
+  {/* Content */}
+  <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="max-w-3xl">
+      {/* Heading */}
+      <h1 className="mb-3 text-2xl font-bold leading-tight text-white sm:text-3xl md:mb-4 md:text-5xl">
+        Income Tax Calculator
+      </h1>
+
+      {/* Breadcrumb */}
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white sm:text-base">
+        <a
+          href="/"
+          className="no-underline transition-colors duration-300 hover:text-[#F5B800]"
+        >
+          Home
+        </a>
+
+        <span className="text-gray-300">&gt;</span>
+
+        <span className="font-semibold text-[#F5B800]">
+          Income Tax Calculator
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <div className="min-h-screen bg-gray-100 pt-10 pb-16 sm:pt-12 sm:pb-20 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28">
       <div className="max-w-6xl mx-auto bg-white border shadow">
         <div className="text-center py-4 border-b">
           <h1 className="text-2xl font-bold">Income Tax Calculator</h1>
@@ -1079,6 +1123,8 @@ export default function IncomeTaxCalculator() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
 
   );
 }

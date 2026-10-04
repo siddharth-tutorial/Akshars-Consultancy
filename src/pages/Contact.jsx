@@ -6,7 +6,7 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaClock,
+  
   FaPaperPlane,
 } from "react-icons/fa";
 import { Formik, Form, Field, ErrorMessage } from "formik";

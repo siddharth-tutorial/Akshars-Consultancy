@@ -29,7 +29,7 @@ const teamMembers = [
 ];
 
 function Team() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+ 
   const [loading, setLoading] = useState(true);
 
   // Simulated loading (loader closes after 2 seconds)

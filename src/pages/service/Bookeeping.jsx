@@ -3,7 +3,7 @@ import bgImage from "../../assets/bg1.webp";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import Loader from "../Loader";
-import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 const BookKeeping = () => {
   const [loading, setLoading] = useState(true);

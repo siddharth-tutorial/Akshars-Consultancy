@@ -13,6 +13,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  console.log(scrolled, "scrolled");
 
   // Scroll effect
   useEffect(() => {

@@ -86,14 +86,19 @@ function About() {
 
       {/* Hero Section */}
       <section
-        className="relative bg-cover bg-center py-24 overflow-hidden text-white"
+        className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-black/40 z-[1]"></div>
-        <div className="absolute top-0 right-0 h-full w-[40%] bg-black/20 z-[2] [clip-path:polygon(0_0,100%_0,100%_100%,20%_100%)]"></div>
+          <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
+      <div
+              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
+              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+            ></div>
+            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
 
-        <div className="relative z-[3] max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center md:text-left">
+         <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+           <div className="flex flex-col items-center md:items-start">
+         <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             About Us
           </h1>
 
@@ -101,9 +106,10 @@ function About() {
             <Link to="/" className="text-white no-underline hover:underline">
               Home
             </Link>
-            <span>{">"}</span>
-            <span className="text-[#fff] font-semibold">About Us</span>
+            <span className="text-white">{">"}</span>
+            <span className="font-semibold text-[#F5B800]">About Us</span>
           </nav>
+        </div>
         </div>
       </section>
 

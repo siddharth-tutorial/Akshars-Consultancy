@@ -13,11 +13,31 @@ body {
 .grecaptcha-badge {
   visibility: visible !important;
   opacity: 1 !important;
-  left: 10px !important;    /* Right ni jagyae Left thi position set karva */
-  right: auto !important;   /* Right alignment cancel karva */
+  left: 10px !important;    
+  right: auto !important;   
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Modal slowly opens from top */
+.modal-fade-in-down {
+  animation: fadeInDown 1000ms ease-in-out both;
+}
+
+/* Modal slowly closes downward */
+.modal-fade-out-down {
+  animation: fadeOutDown 800ms ease-in-out both;
+}
+
+/* Backdrop slowly fades in */
+.modal-backdrop-in {
+  animation: modalBackdropIn 800ms ease-in-out both;
+}
+
+/* Backdrop slowly fades out */
+.modal-backdrop-out {
+  animation: modalBackdropOut 800ms ease-in-out both;
 }

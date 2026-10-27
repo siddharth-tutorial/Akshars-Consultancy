@@ -8,14 +8,7 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <GoogleReCaptchaProvider
-        reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-        scriptProps={{
-          async: true,
-          defer: true,
-          appendTo: "head",
-        }}
-      >
+       <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}>
         <App />
       </GoogleReCaptchaProvider>
     </BrowserRouter>

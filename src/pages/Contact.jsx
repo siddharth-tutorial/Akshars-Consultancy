@@ -1,4 +1,3 @@
-
 import React from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
@@ -45,8 +44,8 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       title: "Email",
-      desc: "info@akshartaxconsultancy.in",
-      link: "mailto:info@akshartaxconsultancy.in",
+      desc: "info@akshartaxconsultancy.com",
+      link: "mailto:info@akshartaxconsultancy.com",
     },
     {
       icon: FaMapMarkerAlt,
@@ -56,21 +55,58 @@ const Contact = () => {
     },
   ];
 
-  const handleSubmit = async (values, { resetForm }) => {
+  // Submit contact form to the live backend
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     if (!executeRecaptcha) {
       alert("reCAPTCHA has not loaded yet. Please try again.");
+      setSubmitting(false);
+      return;
+    }
+
+    const apiUrl = process.env.REACT_APP_API_URL;
+
+    if (!apiUrl) {
+      alert("API URL is not configured. Please contact the website administrator.");
+      setSubmitting(false);
       return;
     }
 
     try {
       const token = await executeRecaptcha("contact_form");
-      console.log("Form Values:", values);
-      console.log("reCAPTCHA v3 Token:", token);
 
-      alert("Message sent successfully!");
+      const response = await fetch(
+        `${apiUrl.replace(/\/$/, "")}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+            recaptchaToken: token,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message || "Unable to send your enquiry. Please try again."
+        );
+      }
+
+      alert(data.message || "Your enquiry has been sent successfully.");
       resetForm();
     } catch (error) {
-      console.error("reCAPTCHA Execution Error:", error);
+      console.error("Contact form submission error:", error);
+
+      alert(
+        error.message ||
+          "Unable to send your message. Please try again later."
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -90,7 +126,7 @@ const Contact = () => {
             Contact Us
           </h1>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-white md:justify-start sm:text-base">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-white sm:text-base md:justify-start">
             <a href="/" className="transition hover:underline">
               Home
             </a>
@@ -108,22 +144,37 @@ const Contact = () => {
               <a
                 key={idx}
                 href={item.link}
-                target={item.title === "Office Address" ? "_blank" : undefined}
-                rel={item.title === "Office Address" ? "noopener noreferrer" : undefined}
+                target={
+                  item.title === "Office Address" ? "_blank" : undefined
+                }
+                rel={
+                  item.title === "Office Address"
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="group block rounded-2xl border border-blue-50 bg-white p-5 text-center no-underline shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-6"
               >
                 <item.icon className="mx-auto mb-4 text-2xl text-[#F5B800] transition-colors duration-300 group-hover:text-[#0B2A4A] sm:text-3xl" />
-                <h4 className="mb-2 font-bold text-[#0A1F3A]">{item.title}</h4>
+
+                <h4 className="mb-2 font-bold text-[#0A1F3A]">
+                  {item.title}
+                </h4>
+
                 {item.phones ? (
                   <div className="mb-2 space-y-1 text-sm text-gray-600">
                     {item.phones.map((phone, index) => (
-                      <span key={index} className="block transition-colors hover:text-[#0B2A4A]">
+                      <span
+                        key={index}
+                        className="block transition-colors hover:text-[#0B2A4A]"
+                      >
                         {phone.text}
                       </span>
                     ))}
                   </div>
                 ) : (
-                  <p className="mb-2 break-words text-sm leading-6 text-gray-600">{item.desc}</p>
+                  <p className="mb-2 break-words text-sm leading-6 text-gray-600">
+                    {item.desc}
+                  </p>
                 )}
               </a>
             ))}
@@ -134,7 +185,6 @@ const Contact = () => {
       {/* ================= FORM & MAP SECTION ================= */}
       <section className="pb-10 sm:pb-12 md:pb-16">
         <div className="mx-auto grid w-full max-w-[1300px] grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-10 lg:px-8">
-          
           {/* ================= CONTACT FORM ================= */}
           <div className="rounded-2xl bg-white p-5 shadow-lg sm:p-6 md:p-8">
             <h3 className="mb-5 text-xl font-bold text-blue-900 sm:mb-6 sm:text-2xl">
@@ -153,8 +203,9 @@ const Contact = () => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {() => (
+              {({ isSubmitting }) => (
                 <Form className="space-y-4 sm:space-y-5">
+                  {/* First Name and Last Name */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <Field
@@ -162,18 +213,28 @@ const Contact = () => {
                         placeholder="First Name *"
                         className="w-full rounded-lg border border-gray-300 p-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:text-base"
                       />
-                      <ErrorMessage name="firstName" component="div" className="mt-1 text-xs text-red-500" />
+                      <ErrorMessage
+                        name="firstName"
+                        component="div"
+                        className="mt-1 text-xs text-red-500"
+                      />
                     </div>
+
                     <div>
                       <Field
                         name="lastName"
                         placeholder="Last Name *"
                         className="w-full rounded-lg border border-gray-300 p-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:text-base"
                       />
-                      <ErrorMessage name="lastName" component="div" className="mt-1 text-xs text-red-500" />
+                      <ErrorMessage
+                        name="lastName"
+                        component="div"
+                        className="mt-1 text-xs text-red-500"
+                      />
                     </div>
                   </div>
 
+                  {/* Email and Phone */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <Field
@@ -182,8 +243,13 @@ const Contact = () => {
                         placeholder="Email Address *"
                         className="w-full rounded-lg border border-gray-300 p-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:text-base"
                       />
-                      <ErrorMessage name="email" component="div" className="mt-1 text-xs text-red-500" />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="mt-1 text-xs text-red-500"
+                      />
                     </div>
+
                     <div>
                       <Field
                         type="tel"
@@ -191,10 +257,15 @@ const Contact = () => {
                         placeholder="Phone Number *"
                         className="w-full rounded-lg border border-gray-300 p-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:text-base"
                       />
-                      <ErrorMessage name="phone" component="div" className="mt-1 text-xs text-red-500" />
+                      <ErrorMessage
+                        name="phone"
+                        component="div"
+                        className="mt-1 text-xs text-red-500"
+                      />
                     </div>
                   </div>
 
+                  {/* Service Selection */}
                   <div>
                     <Field
                       as="select"
@@ -202,16 +273,34 @@ const Contact = () => {
                       className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-600 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:text-base"
                     >
                       <option value="">Service Interested In</option>
-                      <option value="financial-consulting">Financial Consulting</option>
-                      <option value="income-tax-return">Income Tax Return</option>
-                      <option value="audit-assurance">Audit & Assurance</option>
-                      <option value="payroll-management">Payroll Management</option>
-                      <option value="international-accounting">International Accounting</option>
-                      <option value="bookkeeping">Book Keeping Services</option>
+                      <option value="financial-consulting">
+                        Financial Consulting
+                      </option>
+                      <option value="income-tax-return">
+                        Income Tax Return
+                      </option>
+                      <option value="audit-assurance">
+                        Audit &amp; Assurance
+                      </option>
+                      <option value="payroll-management">
+                        Payroll Management
+                      </option>
+                      <option value="international-accounting">
+                        International Accounting
+                      </option>
+                      <option value="bookkeeping">
+                        Book Keeping Services
+                      </option>
                     </Field>
-                    <ErrorMessage name="service" component="div" className="mt-1 text-xs text-red-500" />
+
+                    <ErrorMessage
+                      name="service"
+                      component="div"
+                      className="mt-1 text-xs text-red-500"
+                    />
                   </div>
 
+                  {/* Message */}
                   <div>
                     <Field
                       as="textarea"
@@ -219,26 +308,41 @@ const Contact = () => {
                       placeholder="Message *"
                       className="h-32 w-full resize-none rounded-lg border border-gray-300 p-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 sm:h-36 sm:text-base"
                     />
-                    <ErrorMessage name="message" component="div" className="mt-1 text-xs text-red-500" />
+                    <ErrorMessage
+                      name="message"
+                      component="div"
+                      className="mt-1 text-xs text-red-500"
+                    />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#18427d] py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-blue-900 sm:text-base"
+                    disabled={isSubmitting}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#18427d] py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-60 sm:text-base"
                   >
                     <FaPaperPlane />
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
 
-                  {/* reCAPTCHA v3 Disclaimer Text */}
-                  <p className="text-center text-xs text-gray-500 mt-2">
+                  {/* reCAPTCHA Disclaimer */}
+                  <p className="mt-2 text-center text-xs text-gray-500">
                     This site is protected by reCAPTCHA and the Google{" "}
-                    <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
                       Privacy Policy
                     </a>{" "}
                     and{" "}
-                    <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
+                    <a
+                      href="https://policies.google.com/terms"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
                       Terms of Service
                     </a>{" "}
                     apply.
@@ -269,11 +373,19 @@ const Contact = () => {
               <p className="flex items-start gap-3">
                 <FaPhoneAlt className="mt-1 shrink-0 text-[#0B2A4A]" />
                 <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <a href="tel:+919067640237" className="text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]">
+                  <a
+                    href="tel:+919067640237"
+                    className="text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]"
+                  >
                     +91 9067640237
                   </a>
+
                   <span className="hidden sm:inline">|</span>
-                  <a href="tel:+918980471710" className="text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]">
+
+                  <a
+                    href="tel:+918980471710"
+                    className="text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]"
+                  >
                     +91 8980471710
                   </a>
                 </span>
@@ -281,8 +393,11 @@ const Contact = () => {
 
               <p className="flex items-start gap-3">
                 <FaEnvelope className="mt-1 shrink-0 text-[#0B2A4A]" />
-                <a href="mailto:info@akshartaxconsultancy.in" className="break-all text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]">
-                  info@akshartaxconsultancy.in
+                <a
+                  href="mailto:info@akshartaxconsultancy.com"
+                  className="break-all text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]"
+                >
+                  info@akshartaxconsultancy.com
                 </a>
               </p>
 
@@ -294,7 +409,8 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="leading-6 text-gray-700 no-underline transition-colors hover:text-[#0B2A4A]"
                 >
-                  605, The Crown, 6th Floor, Opp. Rangoli Icecream Cafe, Near Gangotri Circle, Nikol, Ahmedabad - 382350
+                  605, The Crown, 6th Floor, Opp. Rangoli Icecream Cafe, Near
+                  Gangotri Circle, Nikol, Ahmedabad - 382350
                 </a>
               </p>
             </div>

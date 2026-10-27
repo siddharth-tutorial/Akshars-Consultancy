@@ -403,7 +403,7 @@ const Footer = () => {
                 />
 
                 <span className="break-all">
-                  info@akshartaxconsultancy.in
+                  info@akshartaxconsultancy.com
                 </span>
               </a>
             </div>

@@ -308,9 +308,8 @@ const BookKeeping = () => {
               WHATSAPP + PHONE
               FLOATING BUTTONS
           ========================== */}
-          <div className="fixed bottom-5 right-4 z-[9999] flex flex-col gap-3 sm:bottom-6 sm:right-6">
+          {/* <div className="fixed bottom-5 right-4 z-[9999] flex flex-col gap-3 sm:bottom-6 sm:right-6">
 
-            {/* WhatsApp */}
             <a
               href="https://wa.me/919067640237"
               target="_blank"
@@ -319,11 +318,23 @@ const BookKeeping = () => {
               className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl sm:h-14 sm:w-14"
             >
               <FaWhatsapp className="text-2xl sm:text-3xl" />
-            </a>
+            </a> */}
 
             
 
-          </div>
+          {/* </div> */}
+          <div className="fixed bottom-5 right-4 z-[9999] flex flex-col gap-3 sm:bottom-6 sm:right-6">
+  {/* WhatsApp */}
+  <a
+    href="https://wa.me/919067640237?text=Hello%2C%20I%20am%20on%20your%20website%20www.akshartaxconsultancy.com%20and%20I%27m%20interested%20in%20your%20services%20and%20wish%20to%20get%20connected%20for%20a%20discussion."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+    className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl sm:h-14 sm:w-14"
+  >
+    <FaWhatsapp className="text-2xl sm:text-3xl" />
+  </a>
+</div>
 
           {/* =========================
               FOOTER

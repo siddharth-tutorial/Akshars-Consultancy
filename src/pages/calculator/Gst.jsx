@@ -1,424 +1,3 @@
-
-// import React, { useState } from "react";
-// import Header from "../../component/Header";
-// import Footer from "../../component/Footer";
-
-
-// const initialRow = {
-//   saleType: "Inter State Sale",
-//   taxRate: "",
-//   taxableAmount: "",
-//   totalTax: "",
-//   igst: "",
-//   cgst: "",
-//   sgst: "",
-//   cessRate: "",
-//   cessAmount: "",
-// };
-
-// function Gst() {
-
-//   // const bgImage =
-//   //   "https://dodopayments.com/_astro/global-vat-gst-ai-saas-banner.f3JV9ApD_onTfz.webp";
-//   const bgImage =
-//     "https://www.deskera.com/blog/content/images/2021/09/pexels-oleg-magni-2058137-1.jpg";
-
-//   const [rows, setRows] = useState(Array(6).fill({ ...initialRow }));
-
-//   const handleChange = (index, field, value) => {
-//     const updatedRows = [...rows];
-//     updatedRows[index] = { ...updatedRows[index], [field]: value };
-//     const { saleType, taxRate, taxableAmount, cessRate } = updatedRows[index];
-//     const rate = parseFloat(taxRate) || 0;
-//     const amount = parseFloat(taxableAmount) || 0;
-//     const cess = parseFloat(cessRate) || 0;
-//     const tax = (rate / 100) * amount;
-//     const cessAmt = (cess / 100) * amount;
-//     updatedRows[index].totalTax = tax.toFixed(2);
-//     updatedRows[index].cessAmount = cessAmt.toFixed(2);
-//     const tax = (rate / 100) * amount;
-//     const cessAmt = (cess / 100) * amount;
-//     updatedRows[index].totalTax = tax.toFixed(2);
-//     updatedRows[index].cessAmount = cessAmt.toFixed(2);
-//     if (saleType === "Inter State Sale") {
-//       updatedRows[index].igst = tax.toFixed(2);
-//       updatedRows[index].cgst = "";
-//       updatedRows[index].sgst = "";
-//     } else {
-//       updatedRows[index].cgst = (tax / 2).toFixed(2);
-//       updatedRows[index].sgst = (tax / 2).toFixed(2);
-//       updatedRows[index].igst = "";
-//     }
-
-//     setRows(updatedRows);
-//   };
-
-//   const handleReset = () => {
-//     setRows(Array(6).fill({ ...initialRow }));
-//   };
-//     setRows(updatedRows);
-//   };
-
-//   const handleReset = () => setRows(Array(6).fill({ ...initialRow }));
-//   const totals = rows.reduce(
-//     (acc, row) => {
-//       acc.amount += parseFloat(row.taxableAmount || 0);
-//       acc.tax += parseFloat(row.totalTax || 0);
-//       acc.igst += parseFloat(row.igst || 0);
-//       acc.cgst += parseFloat(row.cgst || 0);
-//       acc.sgst += parseFloat(row.sgst || 0);
-//       acc.cess += parseFloat(row.cessAmount || 0);
-//       return acc;
-//     },
-//     { amount: 0, tax: 0, igst: 0, cgst: 0, sgst: 0, cess: 0 }
-//   );
-
-//   const [loading, setLoading] = useState(true);
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setLoading(false);
-//     }, 2000);
-
-//     return () => clearTimeout(timer);
-//   }, []);
-//   return (
-//     <>
-//       {loading ? (
-//         <Loader />
-//       ) : (
-//         <>
-//           <Header />
-//           <Container className="mt-4">
-//             <Card className="p-3">
-//               <h5
-//                 className="text-center mb-4 mx-auto  text-white  py-2 rounded"
-//                 style={{
-//                   background: "#18427d",
-//                   width: "100%",
-//                   maxWidth: "350px",
-//                 }}
-//               >
-//                 GST Calculator
-//               </h5>
-
-//               <div className="table-responsive">
-//                 <Table bordered responsive size="sm">
-//                   <thead className="table-light text-center">
-//                     <tr>
-//                       <th>Type Of Sale</th>
-//                       <th>Rate OF Tax</th>
-//                       <th>Taxable Amount</th>
-//                       <th>Total Tax Amount</th>
-//                       <th>IGST</th>
-//                       <th>CGST</th>
-//                       <th>SGST</th>
-//                       <th>Rate of Cess</th>
-//                       <th>CESS</th>
-//                     </tr>
-//                   </thead>
-//                   <tbody>
-//                     {rows.map((row, index) => (
-//                       <tr key={index}>
-//                         <td>
-//                           <Form.Select
-//                             size="sm"
-//                             value={row.saleType}
-//                             onChange={(e) =>
-//                               handleChange(index, "saleType", e.target.value)
-//                             }
-//                           >
-//                             <option>Inter State Sale</option>
-//                             <option>Intra State Sale</option>
-//                           </Form.Select>
-//                         </td>
-//                         <td>
-//                           <Form.Select
-//                             size="sm"
-//                             value={row.taxRate}
-//                             onChange={(e) =>
-//                               handleChange(index, "taxRate", e.target.value)
-//                             }
-//                           >
-//                             <option value="">select...</option>
-//                             <option value="0.25">0.25%</option>
-//                             <option value="3">3%</option>
-//                             <option value="5">5%</option>
-//                             <option value="12">12%</option>
-//                             <option value="18">18%</option>
-//                             <option value="28">28%</option>
-//                           </Form.Select>
-//                         </td>
-//                         <td>
-//                           <Form.Control
-//                             size="sm"
-//                             type="number"
-//                             value={row.taxableAmount}
-//                             onChange={(e) =>
-//                               handleChange(
-//                                 index,
-//                                 "taxableAmount",
-//                                 e.target.value
-//                               )
-//                             }
-//                           />
-//                         </td>
-//                         <td>
-//                           <Form.Control
-//                             size="sm"
-//                             readOnly
-//                             value={row.totalTax}
-//                           />
-//                         </td>
-//                         <td>
-//                           <Form.Control size="sm" readOnly value={row.igst} />
-//                         </td>
-//                         <td>
-//                           <Form.Control size="sm" readOnly value={row.cgst} />
-//                         </td>
-//                         <td>
-//                           <Form.Control size="sm" readOnly value={row.sgst} />
-//                         </td>
-//                         <td>
-//                           <Form.Control
-//                             size="sm"
-//                             type="number"
-//                             value={row.cessRate}
-//                             onChange={(e) =>
-//                               handleChange(index, "cessRate", e.target.value)
-//                             }
-//                           />
-//                         </td>
-//                         <td>
-//                           <Form.Control
-//                             size="sm"
-//                             readOnly
-//                             value={row.cessAmount}
-//                           />
-//                         </td>
-//                       </tr>
-//                     ))}
-//                   </tbody>
-//                 </Table>
-//               </div>
-
-//               <Row className="text-center fw-bold mt-3 gy-2">
-//                 <Col xs={12} sm={6} md>
-//                   Total Amount : {totals.amount.toFixed(2)}
-//                 </Col>
-//                 <Col xs={12} sm={6} md>
-//                   Total Tax : {totals.tax.toFixed(2)}
-//                 </Col>
-//                 <Col xs={12} sm={6} md>
-//                   Total IGST : {totals.igst.toFixed(2)}
-//                 </Col>
-//                 <Col xs={12} sm={6} md>
-//                   Total CGST : {totals.cgst.toFixed(2)}
-//                 </Col>
-//                 <Col xs={12} sm={6} md>
-//                   Total SGST : {totals.sgst.toFixed(2)}
-//                 </Col>
-//                 <Col xs={12} sm={6} md>
-//                   Total CESS : {totals.cess.toFixed(2)}
-//                 </Col>
-//               </Row>
-
-//               <div className="text-end mt-4">
-//                 <Button variant="danger" size="sm" onClick={handleReset}>
-//                   Reset
-//                 </Button>
-//               </div>
-//             </Card>
-//           </Container>
-
-//           <Footer />
-//         </>
-//       )}
-//     { amount: 0, tax: 0, igst: 0, cgst: 0, sgst: 0, cess: 0 },
-//   );
-
-//   return (
-//     <>
-//       <Header />
-//       <section
-//         className="relative bg-cover bg-center py-20 overflow-hidden"
-//         style={{ backgroundImage: `url(${bgImage})` }}
-//       >
-//         <div className="absolute inset-0 bg-black/50"></div>
-//         <div className="relative z-10 max-w-7xl mx-auto px-4">
-//           <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
-//             GST Calculator
-//           </h1>
-//           <div className="flex items-center gap-2 text-white text-sm">
-//             <a href="/" className="hover:underline">
-//               Home
-//             </a>{" "}
-//             <span>{">"}</span>
-//             <span className="text-[#F5B800] font-semibold">GST Calculator</span>
-//           </div>
-//         </div>
-//       </section>
-
-//       <div className="container mx-auto py-8 px-2 md:px-4">
-//         <div className="bg-white shadow-lg rounded-lg p-4 md:p-6 border border-gray-200">
-//           <h5 className="text-center mb-6 text-white bg-[#18427d] w-48 py-2 mx-auto rounded font-bold">
-//             GST Calculator
-//           </h5>
-
-//           {/* Table Wrapper for Desktop, Card Wrapper for Mobile */}
-//           <div className="space-y-4">
-//             {rows.map((row, index) => (
-//               <div
-//                 key={index}
-//                 className="border border-gray-200 rounded-lg p-3 bg-gray-50 md:bg-transparent md:border-none md:p-0"
-//               >
-//                 <div className="grid grid-cols-2 md:grid-cols-9 gap-2">
-//                   <div className="col-span-2 md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       SALE TYPE
-//                     </label>
-//                     <select
-//                       className="w-full border p-1 rounded text-sm"
-//                       value={row.saleType}
-//                       onChange={(e) =>
-//                         handleChange(index, "saleType", e.target.value)
-//                       }
-//                     >
-//                       <option>Inter State Sale</option>
-//                       <option>Intra State Sale</option>
-//                     </select>
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       TAX %
-//                     </label>
-//                     <select
-//                       className="w-full border p-1 rounded text-sm"
-//                       value={row.taxRate}
-//                       onChange={(e) =>
-//                         handleChange(index, "taxRate", e.target.value)
-//                       }
-//                     >
-//                       <option value="">Rate</option>
-//                       {[0.25, 3, 5, 12, 18, 28].map((r) => (
-//                         <option key={r} value={r}>
-//                           {r}%
-//                         </option>
-//                       ))}
-//                     </select>
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       AMT
-//                     </label>
-//                     <input
-//                       type="number"
-//                       placeholder="Amount"
-//                       className="w-full border p-1 rounded text-sm"
-//                       value={row.taxableAmount}
-//                       onChange={(e) =>
-//                         handleChange(index, "taxableAmount", e.target.value)
-//                       }
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       TAX
-//                     </label>
-//                     <input
-//                       className="w-full border p-1 rounded text-sm bg-gray-100"
-//                       readOnly
-//                       value={row.totalTax}
-//                       placeholder="Tax"
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       IGST
-//                     </label>
-//                     <input
-//                       className="w-full border p-1 rounded text-sm bg-gray-100"
-//                       readOnly
-//                       value={row.igst}
-//                       placeholder="IGST"
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       CGST
-//                     </label>
-//                     <input
-//                       className="w-full border p-1 rounded text-sm bg-gray-100"
-//                       readOnly
-//                       value={row.cgst}
-//                       placeholder="CGST"
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       SGST
-//                     </label>
-//                     <input
-//                       className="w-full border p-1 rounded text-sm bg-gray-100"
-//                       readOnly
-//                       value={row.sgst}
-//                       placeholder="SGST"
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       CESS %
-//                     </label>
-//                     <input
-//                       type="number"
-//                       placeholder="Cess %"
-//                       className="w-full border p-1 rounded text-sm"
-//                       value={row.cessRate}
-//                       onChange={(e) =>
-//                         handleChange(index, "cessRate", e.target.value)
-//                       }
-//                     />
-//                   </div>
-//                   <div className="md:col-span-1">
-//                     <label className="md:hidden text-[10px] font-bold">
-//                       CESS
-//                     </label>
-//                     <input
-//                       className="w-full border p-1 rounded text-sm bg-gray-100"
-//                       readOnly
-//                       value={row.cessAmount}
-//                       placeholder="Cess"
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-
-//           <div className="grid grid-cols-2 md:grid-cols-6 gap-2 text-[11px] md:text-sm font-bold mt-6 bg-gray-100 p-3 rounded">
-//             <div>Amt: {totals.amount.toFixed(2)}</div>
-//             <div>Tax: {totals.tax.toFixed(2)}</div>
-//             <div>IGST: {totals.igst.toFixed(2)}</div>
-//             <div>CGST: {totals.cgst.toFixed(2)}</div>
-//             <div>SGST: {totals.sgst.toFixed(2)}</div>
-//             <div>CESS: {totals.cess.toFixed(2)}</div>
-//           </div>
-
-//           <div className="text-right mt-4">
-//             <button
-//               className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded text-sm"
-//               onClick={handleReset}
-//             >
-//               Reset
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
-// export default Gst;
 import React, { useState } from "react";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
@@ -513,28 +92,57 @@ function Gst() {
       <Header />
 
       {/* Hero */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center py-16 md:py-20"
-        style={{ backgroundImage: `url(${bgImage})` }}
+      {/* =========================
+    HERO / BANNER SECTION
+========================== */}
+<section
+  className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+  style={{ backgroundImage: `url(${bgImage})` }}
+>
+  {/* Dark Navy Background Overlay */}
+  <div className="absolute inset-0 z-10 bg-[#0B2A4A]/75"></div>
+
+  {/* Right Side Clip-Path Overlay */}
+  <div
+    className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]/50 md:block"
+    style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+  ></div>
+
+  
+
+  {/* Banner Content */}
+  <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center md:items-start">
+      {/* Title */}
+      <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        GST Calculator
+      </h1>
+
+      {/* Breadcrumb */}
+      <nav
+        className="mt-3 flex items-center justify-center text-sm font-medium text-white sm:text-base md:justify-start"
+        aria-label="Breadcrumb"
       >
-        <div className="absolute inset-0 bg-black/50" />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4">
-          <h1 className="mb-2 text-3xl font-bold text-white md:text-5xl">
-            GST Calculator
-          </h1>
-
-          <div className="flex items-center gap-2 text-sm text-white">
-            <a href="/" className="transition hover:underline">
+        <ol className="inline-flex items-center space-x-2">
+          <li>
+            <a
+              href="/"
+              className="text-white transition-all hover:underline"
+            >
               Home
             </a>
-            <span>&gt;</span>
+          </li>
+          <li className="flex items-center text-white">
+            <span className="mx-2 text-white/80">&gt;</span>
             <span className="font-semibold text-[#F5B800]">
               GST Calculator
             </span>
-          </div>
-        </div>
-      </section>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
 
       {/* Calculator */}
       <main className="mx-auto w-full max-w-7xl px-2 py-8 md:px-4">

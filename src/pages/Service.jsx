@@ -63,42 +63,55 @@ function Service() {
       <Header />
 
       {/* Hero Section */}
-      <div
-        className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
-        style={{ backgroundImage: `url(${bgImage})` }}
+      {/* =========================
+    HERO / BANNER SECTION
+========================== */}
+<section
+  className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+  style={{ backgroundImage: `url(${bgImage})` }}
+>
+  {/* Dark Navy Background Overlay */}
+  <div className="absolute inset-0 z-10 bg-[#0B2A4A]/75"></div>
+
+  {/* Right Side Clip-Path Overlay */}
+  <div
+    className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]/50 md:block"
+    style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+  ></div>
+
+  
+
+  {/* Banner Content */}
+  <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center md:items-start">
+      {/* Title */}
+      <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        Our Services
+      </h1>
+
+      {/* Breadcrumb */}
+      <nav
+        className="mt-3 flex items-center justify-center text-sm font-medium text-white sm:text-base md:justify-start"
+        aria-label="Breadcrumb"
       >
-           <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
-      <div
-              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
-              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
-            ></div>
-            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
-
-         <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center md:items-start">
-            <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Our Services
-            </h1>
-
-            <nav className="flex justify-center md:justify-start items-center text-sm font-medium">
-              <ol className="inline-flex items-center space-x-2">
-                <li>
-                  <a
-                    href="/"
-                    className="text-white hover:underline transition-all"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li className="flex items-center text-white">
-                  <span className="mx-2 text-white/80">&gt;</span>
-                  <span className="font-semibold text-[#F5B800]">Our Services</span>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
+        <ol className="inline-flex items-center space-x-2">
+          <li>
+            <a
+              href="/"
+              className="text-white transition-all hover:underline"
+            >
+              Home
+            </a>
+          </li>
+          <li className="flex items-center text-white">
+            <span className="mx-2 text-white/80">&gt;</span>
+            <span className="font-semibold text-[#F5B800]">Our Services</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
 
       {/* Services Grid Section */}
       <section className="py-20">

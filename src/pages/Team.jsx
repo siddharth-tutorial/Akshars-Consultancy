@@ -46,42 +46,48 @@ function Team() {
       <Header />
 
       {/* Hero Section */}
-      <section
-        className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
-        style={{ backgroundImage: `url(${bgImage})` }}
+      {/* =========================
+    HERO / BANNER SECTION
+========================== */}
+<section
+  className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+  style={{ backgroundImage: `url(${bgImage})` }}
+>
+  {/* Dark Navy Background Overlay */}
+  <div className="absolute inset-0 z-10 bg-[#0B2A4A]/75"></div>
+
+  {/* Right Side Clip-Path Overlay */}
+  <div
+    className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]/50 md:block"
+    style={{
+      clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
+    }}
+  ></div>
+
+  
+
+  {/* Hero Content */}
+  <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center md:items-start">
+      {/* Title */}
+      <h1 className="text-center font-primary text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        Our Team
+      </h1>
+
+      {/* Breadcrumb */}
+      <nav
+        className="mt-3 flex items-center justify-center text-sm font-medium text-white sm:text-base md:justify-start"
+        aria-label="Breadcrumb"
       >
-        {/* Main Overlay */}
-            <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
-
-            {/* Right Shape */}
-            <div
-              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
-              style={{
-                clipPath:
-                  "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
-              }}
-            ></div>
-
- {/* Gold Decorative Shape */}
-            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
-        {/* Hero Content */}
-        <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center md:items-start">
-          <h1 className="text-center font-primary text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-            Our Team
-          </h1>
-
-          {/* Breadcrumb */}
-          <nav className="flex justify-center md:justify-start items-center text-sm font-medium">
-            <Link to="/" className="text-white no-underline hover:underline">
-              Home
-            </Link>
-            <span className="mx-2 text-white/80">&gt;</span>
-            <span className="font-semibold text-[#F5B800]">Our Team</span>
-          </nav>
-        </div>
-</div>
-      </section>
+        <Link to="/" className="text-white no-underline transition hover:underline">
+          Home
+        </Link>
+        <span className="mx-2 text-white/80">&gt;</span>
+        <span className="font-semibold text-[#F5B800]">Our Team</span>
+      </nav>
+    </div>
+  </div>
+</section>
 
       {/* Team Members */}
       <section className="py-16 bg-white">

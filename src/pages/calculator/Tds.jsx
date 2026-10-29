@@ -159,7 +159,8 @@ const PAYMENTS = [
     aggregate: 5000000,
   },
 ];
-
+  const bgImage =
+    "https://www.deskera.com/blog/content/images/2021/09/pexels-oleg-magni-2058137-1.jpg";  
 const inr = (n) =>
   "Rs " +
   Number(n || 0).toLocaleString("en-IN", {
@@ -213,9 +214,59 @@ export default function TdsCalculator() {
           MAIN TDS SECTION
       ========================== */}
       <section className="min-h-screen overflow-x-hidden bg-slate-100 py-8 sm:py-10 md:py-14">
+        <section
+  className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+  style={{ backgroundImage: `url(${bgImage})` }}
+>
+  {/* Dark Navy Background Overlay */}
+  <div className="absolute inset-0 z-10 bg-[#0B2A4A]/75"></div>
+
+  {/* Right Side Clip-Path Overlay */}
+  <div
+    className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]/50 md:block"
+    style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+  ></div>
+
+  
+
+  {/* Banner Content */}
+  <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center md:items-start">
+      {/* Title */}
+      <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        TDS Calculator
+      </h1>
+
+      {/* Breadcrumb */}
+      <nav
+        className="mt-3 flex items-center justify-center text-sm font-medium text-white sm:text-base md:justify-start"
+        aria-label="Breadcrumb"
+      >
+        <ol className="inline-flex items-center space-x-2">
+          <li>
+            <a
+              href="/"
+              className="text-white transition-all hover:underline"
+            >
+              Home
+            </a>
+          </li>
+          <li className="flex items-center text-white">
+            <span className="mx-2 text-white/80">&gt;</span>
+            <span className="font-semibold text-[#F5B800]">
+              TDS Calculator
+            </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
         
         {/* 1300px Main Container */}
         <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+          
+
 
           {/* Calculator Wrapper */}
           <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-4 shadow-lg sm:p-6 md:p-8">

@@ -131,11 +131,7 @@ const Service = () => {
                   </p>
 
                   {/* BUTTON */}
-                  {/* <div className="flex justify-center">
-                    <div className="bg-[#F5B800] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-md transition-all duration-500 group-hover:rotate-45 group-hover:scale-110">
-                      <FaArrowRight className="text-black" />
-                    </div>
-                  </div> */}
+                  
                   <div className="flex justify-center">
                     <div
                       className="bg-[#F5B800] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-md 

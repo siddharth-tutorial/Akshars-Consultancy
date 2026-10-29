@@ -3,7 +3,6 @@ import Footer from "../../component/Footer";
 import Header from "../../component/Header";
 import bgImage from "../../assets/bg1.webp";
 import Loader from "../Loader";
-import { FaWhatsapp } from "react-icons/fa";
 
 const PayrollService = () => {
   const [loading, setLoading] = useState(true);
@@ -25,70 +24,68 @@ const PayrollService = () => {
         <div className="min-h-screen overflow-x-hidden font-sans">
           <Header />
 
-          {/* =====================================================
-              HERO SECTION
-          ====================================================== */}
-          <section
-          className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
-            style={{
-              backgroundImage: `url(${bgImage})`,
-            }}
-          >
-            {/* Overlay */}
-             <div className="absolute inset-0 z-10 bg-[#0B2A4A]]/75"></div>
+          
+       {/* ================= HERO / BANNER SECTION ================= */}
+<section
+  className="relative flex min-h-[300px] items-center overflow-hidden bg-cover bg-center py-16 sm:min-h-[340px] sm:py-20 md:min-h-[380px] md:py-24"
+  style={{
+    backgroundImage: `url(${bgImage})`,
+  }}
+>
+  {/* Dark Navy Background Overlay */}
+  <div className="absolute inset-0 z-10 bg-[#0B2A4A]/75"></div>
 
-            {/* Right Overlay */}
-           <div
-              className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]]/50 md:block"
-              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
-            ></div>
-            <div className="absolute bottom-0 left-0 z-20 h-1 w-24 bg-gold sm:w-32"></div>
+  {/* Right Side Clip-Path Overlay */}
+  <div
+    className="absolute right-0 top-0 z-20 hidden h-full w-2/5 bg-[#0A1F3A]/50 md:block"
+    style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)" }}
+  ></div>
 
-            {/* Hero Content */}
-           <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
-               <div className="flex flex-col items-center md:items-start">
-                  <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-                  Payroll
-                </h1>
+  
 
-                {/* Breadcrumb */}
-                <nav
-                  className="flex justify-center md:justify-start"
-                  aria-label="Breadcrumb"
-                >
-                  <ol className="flex flex-wrap items-center justify-center text-sm text-white sm:text-base md:justify-start">
-                    <li className="inline-flex items-center">
-                      <a
-                        href="/"
-                        className="text-white transition hover:underline"
-                      >
-                        Home
-                      </a>
-                    </li>
+  {/* Banner Content */}
+  <div className="relative z-30 mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center md:items-start">
+      <h1 className="text-center font-primary text-4xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        Payroll
+      </h1>
 
-                    <li className="flex items-center">
-                      <span className="mx-2 text-white">&gt;</span>
+      {/* Breadcrumb */}
+      <nav
+        className="mt-3 flex justify-center md:justify-start"
+        aria-label="Breadcrumb"
+      >
+        <ol className="flex flex-wrap items-center justify-center gap-y-1 text-sm text-white sm:text-base md:justify-start">
+          <li className="inline-flex items-center">
+            <a
+              href="/"
+              className="text-white transition hover:underline"
+            >
+              Home
+            </a>
+          </li>
 
-                      <a
-                        href="/service"
-                        className="text-white transition hover:underline"
-                      >
-                        Service
-                      </a>
-                    </li>
+          <li className="flex items-center">
+            <span className="mx-2 text-white">&gt;</span>
+            <a
+              href="/service"
+              className="text-white transition hover:underline"
+            >
+              Service
+            </a>
+          </li>
 
-                    <li className="flex items-center">
-                      <span className="mx-2 text-white">&gt;</span>
-
-                      <span className="font-semibold text-[#F5B800]">
-                        Payroll
-                      </span>
-                    </li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </section>
+          <li className="flex items-center">
+            <span className="mx-2 text-white">&gt;</span>
+            <span className="font-semibold text-[#F5B800]">
+              Payroll
+            </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
 
           {/* =====================================================
               MAIN CONTENT AREA
@@ -244,26 +241,19 @@ const PayrollService = () => {
                   payroll is handled with precision and care.
                 </p>
 
-                <button className="w-full rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-colors hover:bg-blue-700 sm:w-auto sm:px-8 sm:text-lg">
-                  Schedule a Free Payroll Consultation
-                </button>
+                <div className="mt-6 flex justify-center">
+                  <a
+                 href="/contact"
+                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-6 py-3 font-bold text-black transition-all hover:opacity-90 sm:w-auto"
+                   >
+                     Schedule a Free Payroll Consultation
+                </a>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* =====================================================
-              FLOATING WHATSAPP BUTTON
-          ====================================================== */}
-          <a
-            href="https://wa.me/919067640237"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chat with us on WhatsApp at +91 9067640237"
-            title="WhatsApp: +91 9067640237"
-            className="fixed bottom-5 right-4 z-[9999] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
-          >
-            <FaWhatsapp className="text-2xl sm:text-3xl" />
-          </a>
+         
 
           <Footer />
         </div>

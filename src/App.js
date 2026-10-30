@@ -8,7 +8,7 @@ import Msme from "./pages/service/Msme";
 
 import Contact from "./pages/Contact";
 
-import Demo1 from "./pages/calculator/Demo1";
+
 import Incometax from "./pages/calculator/Incometax";
 import Gst from "./pages/calculator/Gst";
 import Tds from "./pages/calculator/Tds";
@@ -34,7 +34,7 @@ function App() {
         <Route path="/service/payroll" element={<Payroll />} />
         <Route path="/service/foreign" element={<Foreign />} />
 
-        <Route path="/calculator/demo1" element={<Demo1 />} />
+        
         <Route path="/calculator/incometax" element={<Incometax />} />
         <Route path="/calculator/gst" element={<Gst />} />
         <Route path="/calculator/tds" element={<Tds />} />
